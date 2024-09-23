@@ -29,7 +29,6 @@
 <section id="flash-messages">
 {% set classes = {'success': 'success', 'error': 'danger'}  %}
 {% for type,flashes in app.session.flashBag.all %}
-  {{ dump(type, classes) }}
   {% set class = attribute(classes, type) %}
   {% for flash in flashes %}
   <div class="alert alert-{{ class }} alert-dismissible fade show" role="alert">
