@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FurnitureController extends AbstractController
 {
-    #[Route('/brand/add', name: 'furniture_brand_new')]
+    #[Route('/manage/add-brand', name: 'manage_brand_add')]
     public function addBrand(Request $request, BrandRepository $repo): Response
     {
         $brand = new Brand();
@@ -32,7 +32,7 @@ class FurnitureController extends AbstractController
                 'Brand ' . $brand->getName() . ' successfully created.'
             );
 
-            return $this->redirectToRoute('home', ["id" => $brand->getId()]);
+            return $this->redirectToRoute('manage_brand_edit', ["id" => $brand->getId()]);
         }
 
         return $this->render('furniture/brand.html.twig', [
@@ -42,7 +42,7 @@ class FurnitureController extends AbstractController
     }
 
 
-    #[Route('/brand/edit/{id}', name: 'furniture_brand_edit')]
+    #[Route('/manage/brand/edit/{id}', name: 'manage_brand_edit')]
     public function editBrand(Brand $brand, Request $request, BrandRepository $repo): Response
     {
         $form = $this->createForm(BrandType::class, $brand);
@@ -66,7 +66,7 @@ class FurnitureController extends AbstractController
         ]);
     }
 
-    #[Route('/model/add', name: 'furniture_model_new')]
+    #[Route('/manage/add-model', name: 'manage_model_add')]
     public function addModel(Request $request, ModelRepository $repo): Response
     {
         $model = new Model();
@@ -83,7 +83,7 @@ class FurnitureController extends AbstractController
                 'Model ' . $model->getName() . ' successfully created.'
             );
 
-            return $this->redirectToRoute('furniture_model_edit', ["id" => $model->getId()]);
+            return $this->redirectToRoute('manage_model_edit', ["id" => $model->getId()]);
         }
 
         return $this->render('furniture/model.html.twig', [
@@ -92,7 +92,7 @@ class FurnitureController extends AbstractController
         ]);
     }
 
-    #[Route('/model/edit/{id}', name: 'furniture_model_edit')]
+    #[Route('/manage/model/edit/{id}', name: 'manage_model_edit')]
     public function editModel(Model $model, Request $request, ModelRepository $repo): Response
     {
         $form = $this->createForm(ModelType::class, $model);
@@ -107,7 +107,7 @@ class FurnitureController extends AbstractController
                 'Model ' . $model->getName() . ' successfully updated.'
             );
 
-            return $this->redirectToRoute('furniture_model_edit', ["id" => $model->getId()]);
+            return $this->redirectToRoute('manage_model_edit', ["id" => $model->getId()]);
         }
 
         return $this->render('furniture/model.html.twig', [

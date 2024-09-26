@@ -14,7 +14,7 @@ class BrandType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('nameCode')
+            ->add('slug')
             ->add('website')
             ->add('submit', SubmitType::class)
         ;

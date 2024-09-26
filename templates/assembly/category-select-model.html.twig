@@ -1,0 +1,19 @@
+{% set page = 'assembly' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<container class="container">
+    <div class="row">
+    {{ form(brandForm) }}
+    </div>
+    <div class="row">
+    {{ form(form) }}
+    </div>
+</container>
+
+{% endblock %}

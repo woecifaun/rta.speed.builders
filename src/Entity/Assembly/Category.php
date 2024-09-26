@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Assembly;
 
-use App\Repository\CategoryRepository;
+use App\Entity\Furniture\Model;
+use App\Repository\Assembly\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ORM\Table(name: 'assembly_category')]
 class Category
 {
     #[ORM\Id]
@@ -18,12 +20,6 @@ class Category
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $brand = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $model = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $markdown = null;
@@ -36,6 +32,10 @@ class Category
      */
     #[ORM\OneToMany(targetEntity: Assembly::class, mappedBy: 'category')]
     private Collection $assemblies;
+
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Model $model = null;
 
     public function __construct()
     {
@@ -55,30 +55,6 @@ class Category
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getBrand(): ?string
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(string $brand): static
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    public function getModel(): ?string
-    {
-        return $this->model;
-    }
-
-    public function setModel(string $model): static
-    {
-        $this->model = $model;
 
         return $this;
     }
@@ -133,6 +109,18 @@ class Category
                 $assembly->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getModel(): ?Model
+    {
+        return $this->model;
+    }
+
+    public function setModel(?Model $model): static
+    {
+        $this->model = $model;
 
         return $this;
     }

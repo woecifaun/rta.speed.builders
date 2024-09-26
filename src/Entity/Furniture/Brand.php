@@ -20,7 +20,7 @@ class Brand
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nameCode = null;
+    private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
     private ?string $website = null;
@@ -53,14 +53,14 @@ class Brand
         return $this;
     }
 
-    public function getNameCode(): ?string
+    public function getSlug(): ?string
     {
-        return $this->nameCode;
+        return $this->slug;
     }
 
-    public function setNameCode(string $nameCode): static
+    public function setSlug(string $slug): static
     {
-        $this->nameCode = $nameCode;
+        $this->slug = $slug;
 
         return $this;
     }
