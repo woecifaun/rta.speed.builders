@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Assembly\Assembly;
 use App\Entity\Assembly\Category;
 use App\Entity\Furniture\Brand;
-use App\Form\Assembly\NewType;
 use App\Form\Assembly\CategoryType;
+use App\Form\Assembly\NewType;
 use App\Form\Furniture\BrandSelectorType;
 use App\Form\Furniture\ModelSelectorType;
 use App\Repository\Assembly\AssemblyRepository;
 use App\Repository\Assembly\CategoryRepository;
 use App\Repository\Furniture\BrandRepository;
+use App\Repository\Furniture\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,11 +30,11 @@ class AssemblyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $repo->save($exhibition, true);
+            $repo->save($assembly, true);
 
             $this->addFlash(
                 'success',
-                'Exhibition ' . $exhibition->getFullName() . ' successfully created.'
+                'Assembly ' . $assembly->getName() . ' successfully created.'
             );
 
             return $this->redirectToRoute('home', ["id" => $assembly->getId()]);
@@ -63,33 +64,54 @@ class AssemblyController extends AbstractController
         ]);
     }
 
-    #[Route('/manage/new-category/{slug:brand}/select-model', name: 'assembly_submit_select_model')]
-    public function selectModel(Brand $brand, Request $request, BrandRepository $repo): Response
+    #[Route('/manage/new-category/{slug:brand}', name: 'manage_category_new')]
+    public function newCategory(Brand $brand, Request $request, CategoryRepository $repo): Response
     {
-
-        $brandForm = $this->createForm(BrandSelectorType::class, $brand);
-
         $category = new Category();
-        $form = $this->createForm(ModelSelectorType::class);
+        $category->tmpBrand = $brand; // >_< UGLY but working for now
+
+        $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $repo->save($exhibition, true);
+            $repo->save($category, true);
 
-            // $this->addFlash(
-            //     'success',
-            //     'Exhibition ' . $exhibition->getFullName() . ' successfully created.'
-            // );
+            $this->addFlash(
+                'success',
+                'Category  ' . $category->getName() . ' successfully created.'
+            );
 
-            // return $this->redirectToRoute('home', ["id" => $assembly->getId()]);
+            return $this->redirectToRoute('manage_category_edit', ["id" => $category->getId()]);
         }
 
-        return $this->render('assembly/category-select-model.html.twig', [
+        return $this->render('assembly/category-new.html.twig', [
             'form' => $form,
-            'brandForm' => $brandForm,
+            'brand' => $brand
         ]);
     }
 
+    #[Route('/manage/category/{id}', name: 'manage_category_edit')]
+    public function editCategory(Category $category, Request $request, CategoryRepository $repo): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $repo->save($category, true);
+
+            $this->addFlash(
+                'success',
+                'Category  ' . $category->getName() . ' successfully updated.'
+            );
+
+            return $this->redirectToRoute('manage_category_edit', ["id" => $category->getId()]);
+        }
+
+        return $this->render('assembly/category-edit.html.twig', [
+            'form' => $form,
+            'brand' => $category->getModel()->getBrand(),
+        ]);
+    }
 }

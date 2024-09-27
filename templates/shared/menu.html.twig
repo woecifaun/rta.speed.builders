@@ -1,7 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="{{ path('assembly_submit_select_brand') }}">New Assembly</a></li>
-    <li><a href="{{ path('manage_category_select_brand') }}">New Category</a></li>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">RTA Speed Builders</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="{{ path('assembly_submit_select_brand') }}">New Assembly</a>
+        <a class="nav-link" href="{{ path('manage_category_select_brand') }}">New Category</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </div>
+    </div>
+  </div>
 </nav>

@@ -18,7 +18,6 @@ class ModelSelectorType extends AbstractType
                 'class' => Model::class,
                 'choice_label' => 'name',
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 

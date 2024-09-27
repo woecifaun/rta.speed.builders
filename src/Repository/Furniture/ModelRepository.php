@@ -2,6 +2,7 @@
 
 namespace App\Repository\Furniture;
 
+use App\Entity\Furniture\Brand;
 use App\Entity\Furniture\Model;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -26,6 +27,16 @@ class ModelRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllByBrand(Brand $brand)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.brand = :brand')
+            ->setParameter('brand', $brand)
+            ->orderBy('m.name', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
