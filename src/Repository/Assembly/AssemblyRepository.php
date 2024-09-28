@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Assembly;
 
-use App\Entity\Assembly;
+use App\Entity\Assembly\Assembly;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,6 +16,13 @@ class AssemblyRepository extends ServiceEntityRepository
         parent::__construct($registry, Assembly::class);
     }
 
+    public function save(Assembly $entity, bool $flush = true): void
+    {
+        $this->getEntityManager()->persist($entity);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
     //    /**
     //     * @return Assembly[] Returns an array of Assembly objects
     //     */

@@ -1,0 +1,25 @@
+{% set page = 'assembly' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section class="container">
+  <form method="post">
+    <fieldset class="form-row">
+      <div class="form-group">
+      <legend>Select a brand: </legend>
+      {{ form_widget(form.brand, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.brand) }}
+      </div>
+      <div class="form-group">
+          <input type="submit" value="submit">
+      </div>
+    </fieldset>
+  {{ form_end(form) }}
+</section>
+
+{% endblock %}

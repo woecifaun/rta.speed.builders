@@ -1,0 +1,50 @@
+{% set page = 'assembly' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section class="container">
+  <form method="post">
+    <fieldset class="form-row">
+      <div class="form-group">
+      <legend>Select the category</legend>
+      {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.category) }}
+      </div>
+      <div class="form-group">
+      <legend>Video URL</legend>
+      {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.url) }}
+      </div>
+      <div class="form-group">
+      <legend>Recorded time</legend>
+      {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.time) }}
+      </div>
+      <div class="form-group">
+      <legend>Date of record</legend>
+      {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.date) }}
+      </div>
+      <div class="form-group">
+      <legend>attemppt number</legend>
+      {{ form_widget(form.attempt, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.attempt) }}
+      </div>
+      <div class="form-group">
+      <legend>Email address</legend>
+      {{ form_widget(form.originalEmailAddress, {'attr': {'class': 'form-control'}}) }}
+      {{ form_errors(form.originalEmailAddress) }}
+      </div>
+      <div class="form-group">
+          <input type="submit" value="submit" class="btn btn-success">
+      </div>
+    </fieldset>
+  {{ form_end(form) }}
+</section>
+
+{% endblock %}

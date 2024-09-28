@@ -9,18 +9,17 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class BrandSelectorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('slug', EntityType::class, [
+            ->add('brand', EntityType::class, [
                 'class' => Brand::class,
                 'choice_label' => 'name',
                 'choice_value' => 'slug',
             ])
-            ->add('submit', SubmitType::class)
+            // ->add('submit', SubmitType::class)
         ;
     }
 

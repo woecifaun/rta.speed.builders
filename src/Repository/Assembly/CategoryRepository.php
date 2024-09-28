@@ -3,6 +3,7 @@
 namespace App\Repository\Assembly;
 
 use App\Entity\Assembly\Category;
+use App\Entity\Furniture\Model;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -26,6 +27,16 @@ class CategoryRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllByModel(Model $model)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.model = :model')
+            ->setParameter('model', $model)
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
