@@ -8,18 +8,28 @@
 {% set config = {display_poster: true} %}
 
 <section class="container">
+  {% if brand.getModels is empty %}
+    <div class="alert alert-warning">
+      Could not find any model for <strong>{{ brand.name }}</strong>!
+      <a href="{{ path('manage_category_select_brand') }}">Please, add a model for this brand.</a>
+    </div>
+  {% else %}
   <form method="post">
     <fieldset class="form-row">
-      <div class="form-group">
-      <legend>Select a Model: </legend>
+      <div class="form-group mb-3">
+      <legend>
+        Select a model from <strong>{{ brand.name}}</strong>
+        <sup class="edit-tag"><a href="{{ path('submit_select_brand')}}">[change]</a></sup>
+      </legend>
       {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
       {{ form_errors(form.model) }}
       </div>
       <div class="form-group">
-          <input type="submit" value="submit" class="btn btn-success">
+          <input type="submit" value="submit" class="btn btn-info">
       </div>
     </fieldset>
   {{ form_end(form) }}
+  {% endif %}
 </section>
 
 {% endblock %}

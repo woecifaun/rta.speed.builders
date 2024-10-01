@@ -1,4 +1,4 @@
-{% set page = 'assembly' %}
+{% set navbar = {page: 'assembly', tab: null} %}
 
 {% extends 'shared/base.html.twig' %}
 
@@ -8,6 +8,12 @@
 {% set config = {display_poster: true} %}
 
 <section class="container">
+  {% if model.categories is empty %}
+  <div class="alert alert-warning">
+    Could not find any category for <strong>{{ model.name }}</strong> (brand: {{ model.brand.name }})!
+    <a href="{{ path('manage_category_new', {slug: model.brand.slug}) }}">Please, create a category for this model</a>
+  </div>
+  {% else %}
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group">
@@ -45,6 +51,7 @@
       </div>
     </fieldset>
   {{ form_end(form) }}
+  {% endif %}
 </section>
 
 {% endblock %}

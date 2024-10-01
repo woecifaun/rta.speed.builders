@@ -30,7 +30,7 @@ class Model
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'model')]
     private Collection $categories;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $slug = null;
 
     public function __construct()

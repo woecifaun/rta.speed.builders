@@ -42,9 +42,6 @@ class SubmitController extends AbstractController
     #[Route('/submit/{slug:brand}/select-model', name: 'submit_select_model')]
     public function submitSelectModel(Request $request, Brand $brand): Response
     {
-        // $model = new Model();
-        // $model->setBrand($brand);
-
         $form = $this->createForm(ModelSelectorType::class, null, ['brand' => $brand]);
 
         $form->handleRequest($request);
@@ -57,6 +54,7 @@ class SubmitController extends AbstractController
 
         return $this->render('submit/select-model.html.twig', [
             'form' => $form,
+            'brand' => $brand,
         ]);
     }
 
@@ -79,6 +77,7 @@ class SubmitController extends AbstractController
 
         return $this->render('submit/new-speedbuilding.html.twig', [
             'form' => $form,
+            'model' => $model,
         ]);
     }
 }

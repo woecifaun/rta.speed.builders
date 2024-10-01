@@ -6,7 +6,8 @@ use App\Entity\Assembly\Assembly;
 use App\Entity\Assembly\Category;
 use App\Entity\Furniture\Brand;
 use App\Entity\Furniture\Model;
-use App\Form\Assembly\CategoryType;
+use App\Form\Assembly\CategoryEditType;
+use App\Form\Assembly\CategoryNewType;
 use App\Form\Assembly\NewType;
 use App\Form\Furniture\BrandSelectorType;
 use App\Form\Furniture\ModelSelectorType;
@@ -34,7 +35,7 @@ class ManageController extends AbstractController
             return $this->redirectToRoute('manage_category_new', ["slug" => $slug]);
         }
 
-        return $this->render('assembly/category-select-brand.html.twig', [
+        return $this->render('manage/category-select-brand.html.twig', [
             'form' => $form,
         ]);
     }
@@ -43,9 +44,8 @@ class ManageController extends AbstractController
     public function manageNewCategory(Brand $brand, Request $request, CategoryRepository $repo): Response
     {
         $category = new Category();
-        $category->tmpBrand = $brand; // >_< UGLY but working for now
 
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryNewType::class, $category, ['brand' => $brand]);
 
         $form->handleRequest($request);
 
@@ -60,16 +60,16 @@ class ManageController extends AbstractController
             return $this->redirectToRoute('manage_category_edit', ["id" => $category->getId()]);
         }
 
-        return $this->render('assembly/category-new.html.twig', [
+        return $this->render('manage/category-new.html.twig', [
             'form' => $form,
             'brand' => $brand
         ]);
     }
 
-    #[Route('/manage/category/{id}', name: 'manage_category_edit')]
+    #[Route('/manage/category/{id}/edit', name: 'manage_category_edit')]
     public function manageEditCategory(Category $category, Request $request, CategoryRepository $repo): Response
     {
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryEditType::class, $category);
 
         $form->handleRequest($request);
 
@@ -84,9 +84,17 @@ class ManageController extends AbstractController
             return $this->redirectToRoute('manage_category_edit', ["id" => $category->getId()]);
         }
 
-        return $this->render('assembly/category-edit.html.twig', [
+        return $this->render('manage/category-edit.html.twig', [
             'form' => $form,
-            'brand' => $category->getModel()->getBrand(),
+            'category' => $category,
+        ]);
+    }
+
+    #[Route('/manage/category/{id}/preview', name: 'manage_category_preview')]
+    public function managePreviewCategory(Category $category): Response
+    {
+        return $this->render('manage/category-preview.html.twig', [
+            'category' => $category
         ]);
     }
 }

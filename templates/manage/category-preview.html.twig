@@ -1,0 +1,23 @@
+{% set page = 'assembly' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <h2>{{ category.model.name }} - {{ category.name }}</h2>
+      <div class="category-html">
+        {{ category.markdown }}
+      </div>
+      <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info">Edit</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

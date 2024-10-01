@@ -6,10 +6,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="{{ path('submit_select_brand') }}">New Assembly</a>
-        <a class="nav-link" href="{{ path('manage_category_select_brand') }}">New Category</a>
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link" href="{{ path('submit_select_brand') }}">New Speedbuilding Record</a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Manage
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{{ path('manage_category_select_brand') }}">Create a category</a></li>
+              <li><a class="dropdown-item" href="{{ path('manage_model_add') }}">Add a model of furniture</a></li>
+              <li><a class="dropdown-item" href="{{ path('manage_brand_add') }}">Add a brand of furniture</a></li>
+            </ul>
+          </div>
       </div>
     </div>
   </div>
