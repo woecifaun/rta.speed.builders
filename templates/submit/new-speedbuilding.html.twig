@@ -2,48 +2,64 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Submit a New Speedbuilding Record }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Submit a New Speedbuilding Record</h2>
+    </div>
+  </div>
+
+
   {% if model.categories is empty %}
   <div class="alert alert-warning">
     Could not find any category for <strong>{{ model.name }}</strong> (brand: {{ model.brand.name }})!
-    <a href="{{ path('manage_category_new', {slug: model.brand.slug}) }}">Please, create a category for this model</a>
+    <a href="{{ path('manage_category_new', {id: model.brand.id, model: model.id}) }}">Please, create a category for this model</a>
   </div>
   {% else %}
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group">
-      <legend>Select the category</legend>
-      {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+      <legend>Select the category for {{ model.brand.name }} | {{ model.name }}</legend>
+      {{ form_widget(form.category) }}
       {{ form_errors(form.category) }}
       </div>
       <div class="form-group">
       <legend>Video URL</legend>
-      {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(form.url) }}
       {{ form_errors(form.url) }}
       </div>
-      <div class="form-group">
-      <legend>Recorded time</legend>
-      {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
-      {{ form_errors(form.time) }}
+      <div class="form-group record-time">
+      <legend>Time (Hours:Minutes:Seconds.milliseconds)</legend>
+      {{ form_widget(form.hours, {'attr': {'max': '99', 'min': '0'}}) }}
+      {{ form_errors(form.hours) }}
+      :
+      {{ form_widget(form.minutes, {'attr': {'max': '59', 'min': '0'}}) }}
+      {{ form_errors(form.minutes) }}
+      :
+      {{ form_widget(form.seconds, {'attr': {'max': '59', 'min': '0'}}) }}
+      {{ form_errors(form.seconds) }}
+      .
+      {{ form_widget(form.milliseconds, {'attr': {'max': '999', 'min': '0'}}) }}
+      {{ form_errors(form.milliseconds) }}
       </div>
       <div class="form-group">
       <legend>Date of record</legend>
-      {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(form.date) }}
       {{ form_errors(form.date) }}
       </div>
       <div class="form-group">
       <legend>attemppt number</legend>
-      {{ form_widget(form.attempt, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(form.attempt) }}
       {{ form_errors(form.attempt) }}
       </div>
       <div class="form-group">
       <legend>Email address</legend>
-      {{ form_widget(form.originalEmailAddress, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(form.originalEmailAddress) }}
       {{ form_errors(form.originalEmailAddress) }}
       </div>
       <div class="form-group">

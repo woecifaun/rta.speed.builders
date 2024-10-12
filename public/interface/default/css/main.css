@@ -2,6 +2,18 @@ main {
   margin-top: 5em;
 }
 
-.edit-tag {
-  outline: red solid thin;
+.page-h2 {
+  font-size: 200%;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(0, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-group.record-time .form-control {
+  color: red;
+  display:inline;
+  width: unset;
 }

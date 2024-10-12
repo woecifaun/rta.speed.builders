@@ -2,17 +2,16 @@
 
 namespace App\Controller;
 
+use App\Form\Speedbuilding\TimeType;
+use App\Service\Speedbuilding\Time;
+
 use App\Entity\Assembly\Assembly;
-use App\Entity\Assembly\Category;
 use App\Entity\Furniture\Brand;
 use App\Entity\Furniture\Model;
-use App\Form\Assembly\CategoryType;
-use App\Form\Assembly\NewType;
+use App\Form\Speedbuilding\NewRecordType;
 use App\Form\Furniture\BrandSelectorType;
 use App\Form\Furniture\ModelSelectorType;
 use App\Repository\Assembly\AssemblyRepository;
-use App\Repository\Assembly\CategoryRepository;
-use App\Repository\Furniture\BrandRepository;
 use App\Repository\Furniture\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,9 +28,9 @@ class SubmitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $slug = $form->get('brand')->getData()->getSlug();
+            $id = $form->get('brand')->getData()->getId();
 
-            return $this->redirectToRoute('submit_select_model', ["slug" => $slug]);
+            return $this->redirectToRoute('submit_select_model', ["id" => $id]);
         }
 
         return $this->render('submit/select-brand.html.twig', [
@@ -39,7 +38,7 @@ class SubmitController extends AbstractController
         ]);
     }
 
-    #[Route('/submit/{slug:brand}/select-model', name: 'submit_select_model')]
+    #[Route('/submit/brand-{id:brand}/select-model', name: 'submit_select_model')]
     public function submitSelectModel(Request $request, Brand $brand): Response
     {
         $form = $this->createForm(ModelSelectorType::class, null, ['brand' => $brand]);
@@ -62,14 +61,16 @@ class SubmitController extends AbstractController
     public function submitSpeedbuilding(Request $request, Model $model, AssemblyRepository $repo): Response
     {
         $assembly = new Assembly();
+        $assembly->timeToHisv();
 
-        $form = $this->createForm(NewType::class, $assembly, ['model' => $model]);
+        $form = $this->createForm(NewRecordType::class, $assembly, ['model' => $model]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DatetimeImmutable();
-            $assembly->setPostDate($now);
+            $assembly->setPostDate($now)->HisvToTime();
+
             $repo->save($assembly, true);
 
             return $this->redirectToRoute('home');

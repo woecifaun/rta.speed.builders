@@ -2,13 +2,19 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
 
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Edit the Category</h2>
+    </div>
+  </div>
+
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group mb-3">

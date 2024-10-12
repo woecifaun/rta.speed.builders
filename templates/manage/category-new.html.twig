@@ -2,22 +2,43 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
 
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Create a New Speedbuilding Category</h2>
+    </div>
+  </div>
+
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group">
-      <legend>Select the {{ brand.name }} model: </legend>
-      {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
-      {{ form_errors(form.model) }}
+        <legend>Select the {{ brand.name }} model </legend>
+        {{ form_widget(form.model) }}
+        {{ form_errors(form.model) }}
+      </div>
+      <div class="form-group">
+        <legend>Name </legend>
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+      </div>
+      <div class="form-group">
+        <legend>Rules </legend>
+        {{ form_widget(form.markdown) }}
+        {{ form_errors(form.markdown) }}
+      </div>
+      <div class="form-group mt-3">
+        <input type="submit" name="save" class="btn btn-success">
       </div>
     </fieldset>
   {{ form_end(form) }}
+
+
 </section>
 
 {% endblock %}

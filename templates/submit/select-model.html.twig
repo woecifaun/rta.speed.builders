@@ -2,16 +2,20 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Submit a New Speedbuilding Record {% endblock %}
 
 {% block payload %}
-{% set config = {display_poster: true} %}
-
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Submit a New Speedbuilding Record</h2>
+    </div>
+  </div>
+
   {% if brand.getModels is empty %}
     <div class="alert alert-warning">
       Could not find any model for <strong>{{ brand.name }}</strong>!
-      <a href="{{ path('manage_category_select_brand') }}">Please, add a model for this brand.</a>
+      <a href="{{ path('manage_model_add', {'brand-id': brand.id}) }}">Please, add a model for this brand.</a>
     </div>
   {% else %}
   <form method="post">
@@ -31,5 +35,4 @@
   {{ form_end(form) }}
   {% endif %}
 </section>
-
 {% endblock %}

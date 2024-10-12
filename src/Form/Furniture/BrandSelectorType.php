@@ -17,7 +17,7 @@ class BrandSelectorType extends AbstractType
             ->add('brand', EntityType::class, [
                 'class' => Brand::class,
                 'choice_label' => 'name',
-                'choice_value' => 'slug',
+                'choice_value' => 'id',
             ])
             // ->add('submit', SubmitType::class)
         ;

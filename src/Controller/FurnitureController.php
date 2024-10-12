@@ -67,9 +67,15 @@ class FurnitureController extends AbstractController
     }
 
     #[Route('/manage/add-model', name: 'manage_model_add')]
-    public function addModel(Request $request, ModelRepository $repo): Response
+    public function addModel(Request $request, ModelRepository $repo, BrandRepository $bRepo ): Response
     {
         $model = new Model();
+
+        if ($brandId = $request->get('brand-id')) {
+            if ($brand = $bRepo->findOneById($brandId)) {
+                $model->setBrand($brand);
+            }
+        }
 
         $form = $this->createForm(ModelType::class, $model);
 

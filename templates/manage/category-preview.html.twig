@@ -2,7 +2,7 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
@@ -11,8 +11,14 @@
 <section class="container">
   <div class="row">
     <div class="col">
-      <h2>{{ category.model.name }} - {{ category.name }}</h2>
-      <div class="category-html">
+      <h2 class="page-h2">{{category.name}}</h2>
+      <span class="badge bg-secondary">{{ category.model.brand.name }}</span> <span class="badge bg-secondary">{{ category.model.name }}</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="category-html mb-3 mt-3">
         {{ category.markdown }}
       </div>
       <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info">Edit</a>

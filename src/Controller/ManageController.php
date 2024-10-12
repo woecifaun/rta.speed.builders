@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\Assembly\Assembly;
+// use App\Entity\Assembly\Assembly;
 use App\Entity\Assembly\Category;
 use App\Entity\Furniture\Brand;
-use App\Entity\Furniture\Model;
+// use App\Entity\Furniture\Model;
 use App\Form\Assembly\CategoryEditType;
 use App\Form\Assembly\CategoryNewType;
-use App\Form\Assembly\NewType;
+// use App\Form\Assembly\NewType;
 use App\Form\Furniture\BrandSelectorType;
-use App\Form\Furniture\ModelSelectorType;
-use App\Repository\Assembly\AssemblyRepository;
+// use App\Form\Furniture\ModelSelectorType;
+// use App\Repository\Assembly\AssemblyRepository;
 use App\Repository\Assembly\CategoryRepository;
-use App\Repository\Furniture\BrandRepository;
+// use App\Repository\Furniture\BrandRepository;
 use App\Repository\Furniture\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,9 +30,9 @@ class ManageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $slug = $form->get('brand')->getData()->getSlug();
+            $id = $form->get('brand')->getData()->getId();
 
-            return $this->redirectToRoute('manage_category_new', ["slug" => $slug]);
+            return $this->redirectToRoute('manage_category_new', ["id" => $id]);
         }
 
         return $this->render('manage/category-select-brand.html.twig', [
@@ -40,10 +40,16 @@ class ManageController extends AbstractController
         ]);
     }
 
-    #[Route('/manage/new-category/{slug:brand}', name: 'manage_category_new')]
-    public function manageNewCategory(Brand $brand, Request $request, CategoryRepository $repo): Response
+    #[Route('/manage/new-category/brand-{id:brand}', name: 'manage_category_new')]
+    public function manageNewCategory(Brand $brand, Request $request, CategoryRepository $repo, ModelRepository $mRepo): Response
     {
         $category = new Category();
+
+        if ($modelId = $request->get('model')) {
+            if ($model = $mRepo->findOneById($modelId)) {
+                $category->setModel($model);
+            }
+        }
 
         $form = $this->createForm(CategoryNewType::class, $category, ['brand' => $brand]);
 
@@ -81,7 +87,7 @@ class ManageController extends AbstractController
                 'Category  ' . $category->getName() . ' successfully updated.'
             );
 
-            return $this->redirectToRoute('manage_category_edit', ["id" => $category->getId()]);
+            return $this->redirectToRoute('manage_category_preview', ["id" => $category->getId()]);
         }
 
         return $this->render('manage/category-edit.html.twig', [

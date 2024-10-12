@@ -2,16 +2,35 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Brands{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
-<container class="container">
-    <div class="row">
-
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Add a new Furniture Brand </h2>
     </div>
-    {{ form(form) }}
-</container>
+  </div>
+
+  <form method="post">
+    <fieldset class="form-row">
+      <div class="form-group mb-3">
+        <legend>Name </legend>
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.name) }}
+        </div>
+      <div class="form-group mb-3">
+        <legend>Website</legend>
+        {{ form_widget(form.website, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.website) }}
+        </div>
+      <div class="form-group mb-3">
+        <input type="submit" name="Save" value="save" class="btn btn-success">
+      </div>
+    </fieldset>
+  {{ form_end(form) }}
+</section>
 
 {% endblock %}

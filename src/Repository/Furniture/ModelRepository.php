@@ -39,6 +39,19 @@ class ModelRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Brand Returns a single Brand object with the id or null if not exists
+     */
+    public function findOneById(int $id): ?Model
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     //    /**
     //     * @return Model[] Returns an array of Model objects
     //     */

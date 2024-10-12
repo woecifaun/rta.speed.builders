@@ -2,12 +2,26 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Create a New Speedbuilding Category</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning">
+        Cannot find the brand you're looking for ? <a href="{{ path('manage_brand_add') }}">Add a new brand to the list!</a>
+      </div>
+    </div>
+  </div>
+
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group mb-3">

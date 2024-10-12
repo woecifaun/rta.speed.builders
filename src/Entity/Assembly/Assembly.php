@@ -24,8 +24,9 @@ class Assembly
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\Column(type: Types::TIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $time = null;
+    // Speedbuilding time is stored as seconds.milliseconds
+    #[ORM\Column(type: Types::FLOAT)]
+    private ?float $time = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $PostDate = null;
@@ -35,6 +36,14 @@ class Assembly
 
     #[ORM\Column(nullable: true)]
     private ?int $attempt = null;
+
+    /* helpers for form */
+    /* Cause I couldn’t make the form DataMapper works */
+
+    private $hours;
+    private $minutes;
+    private $seconds;
+    private $milliseconds;
 
     public function getId(): ?int
     {
@@ -82,7 +91,7 @@ class Assembly
         return $this->time;
     }
 
-    public function setTime(\DateTimeImmutable $time): static
+    public function setTime(float $time): static
     {
         $this->time = $time;
 
@@ -123,5 +132,91 @@ class Assembly
         $this->attempt = $attempt;
 
         return $this;
+    }
+
+    public function getHours(): int
+    {
+        return $this->hours;
+    }
+
+    public function setHours(int $hours)
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
+    public function getMinutes(): int
+    {
+        $total_minutes = intval($this->time / 60);
+        return $total_minutes % 60;
+    }
+
+    public function setMinutes(int $minutes)
+    {
+        $this->minutes = $minutes;
+
+        return $this;
+    }
+
+    public function getSeconds(): int
+    {
+        return intval($this->time % 60);
+    }
+
+    public function setSeconds(int $seconds)
+    {
+        $this->seconds = $seconds;
+
+        return $this;
+    }
+
+    public function getMilliseconds(): int
+    {
+        if (is_null($this->time)) {
+            return 0;
+        }
+
+        $decimal = sscanf($this->time, '%d.%d')[1];
+
+        return intval($decimal);
+    }
+
+    public function setMilliseconds(int $milliseconds)
+    {
+        $this->milliseconds = $milliseconds;
+
+        return $this;
+    }
+
+    public function timeToHisv()
+    {
+        // hours
+        $this->hours = intval($this->time / 3600);
+
+        // minutes
+        $total_minutes = intval($this->time / 60);
+        $this->minutes = $total_minutes % 60;
+
+        // seconds
+        $this->seconds = intval($this->time % 60);
+
+        // milliseconds
+        if (is_null($this->time)) {
+            $this->milliseconds = 0;
+        } else {
+            $milliseconds = sscanf($this->time, '%d.%d')[1];
+            $this->milliseconds = intval($decimal);
+
+        }
+    }
+
+    public function HisvToTime()
+    {
+        $this->time =
+            $this->hours * 3600 +
+            $this->minutes * 60 +
+            $this->seconds +
+            floatval("." . $this->milliseconds);
     }
 }

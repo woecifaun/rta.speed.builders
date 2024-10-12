@@ -2,12 +2,18 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}{{ 'furniture.brand.add'|trans }}{% endblock %}
+{% block title %}RTA Speedbuilders - Submit a new Speedbuilding record{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
 <section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Submit a new Speedbuilding record</h2>
+    </div>
+  </div>
+
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group mb-3">
