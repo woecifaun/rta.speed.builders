@@ -2,7 +2,7 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
+{% block title %}RTA Speedbuilders - Manage Category {{ category.name }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
@@ -19,7 +19,7 @@
   <div class="row">
     <div class="col">
       <div class="category-html mb-3 mt-3">
-        {{ category.markdown }}
+        {{ category.html|raw }}
       </div>
       <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info">Edit</a>
     </div>

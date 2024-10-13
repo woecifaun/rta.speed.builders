@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use League\CommonMark\CommonMarkConverter;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\Table(name: 'assembly_category')]
@@ -37,9 +38,12 @@ class Category
     #[ORM\JoinColumn(nullable: false)]
     private ?Model $model = null;
 
+    private $converter;
+
     public function __construct()
     {
         $this->assemblies = new ArrayCollection();
+        $this->setConverter();
     }
 
     public function getId(): ?int
@@ -68,6 +72,9 @@ class Category
     {
         $this->markdown = $markdown;
 
+        $this->setConverter();
+        $this->html = $this->converter->convert($markdown);
+
         return $this;
     }
 
@@ -76,12 +83,12 @@ class Category
         return $this->html;
     }
 
-    public function setHtml(?string $html): static
-    {
-        $this->html = $html;
+    // public function setHtml(?string $html): static
+    // {
+    //     $this->html = $html;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Assembly>
@@ -124,4 +131,15 @@ class Category
 
         return $this;
     }
+
+    protected function setConverter()
+    {
+        if ($this->converter) { return; }
+
+        $this->converter = new CommonMarkConverter([
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+        ]);
+    }
 }
+
