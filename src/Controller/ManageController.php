@@ -2,18 +2,12 @@
 
 namespace App\Controller;
 
-// use App\Entity\Assembly\Assembly;
-use App\Entity\Assembly\Category;
+use App\Entity\Speedbuilding\Category;
 use App\Entity\Furniture\Brand;
-// use App\Entity\Furniture\Model;
-use App\Form\Assembly\CategoryEditType;
-use App\Form\Assembly\CategoryNewType;
-// use App\Form\Assembly\NewType;
+use App\Form\Speedbuilding\CategoryEditType;
+use App\Form\Speedbuilding\CategoryNewType;
 use App\Form\Furniture\BrandSelectorType;
-// use App\Form\Furniture\ModelSelectorType;
-// use App\Repository\Assembly\AssemblyRepository;
-use App\Repository\Assembly\CategoryRepository;
-// use App\Repository\Furniture\BrandRepository;
+use App\Repository\Speedbuilding\CategoryRepository;
 use App\Repository\Furniture\ModelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

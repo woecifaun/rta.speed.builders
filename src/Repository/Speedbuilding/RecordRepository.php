@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Repository\Assembly;
+namespace App\Repository\Speedbuilding;
 
-use App\Entity\Assembly\Assembly;
+use App\Entity\Speedbuilding\Record;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Assembly>
+ * @extends ServiceEntityRepository<Record>
  */
-class AssemblyRepository extends ServiceEntityRepository
+class RecordRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Assembly::class);
+        parent::__construct($registry, Record::class);
     }
 
-    public function save(Assembly $entity, bool $flush = true): void
+    public function save(Record $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
         if ($flush) {
@@ -24,7 +24,7 @@ class AssemblyRepository extends ServiceEntityRepository
         }
     }
     //    /**
-    //     * @return Assembly[] Returns an array of Assembly objects
+    //     * @return Record[] Returns an array of Record objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -38,7 +38,7 @@ class AssemblyRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Assembly
+    //    public function findOneBySomeField($value): ?Record
     //    {
     //        return $this->createQueryBuilder('a')
     //            ->andWhere('a.exampleField = :val')

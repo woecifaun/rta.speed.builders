@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity\Assembly;
+namespace App\Entity\Speedbuilding;
 
 use App\Entity\Furniture\Model;
-use App\Repository\Assembly\CategoryRepository;
+use App\Repository\Speedbuilding\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use League\CommonMark\CommonMarkConverter;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[ORM\Table(name: 'assembly_category')]
+#[ORM\Table(name: 'speedbuilding_category')]
 class Category
 {
     #[ORM\Id]
@@ -29,10 +29,10 @@ class Category
     private ?string $html = null;
 
     /**
-     * @var Collection<int, Assembly>
+     * @var Collection<int, Record>
      */
-    #[ORM\OneToMany(targetEntity: Assembly::class, mappedBy: 'category')]
-    private Collection $assemblies;
+    #[ORM\OneToMany(targetEntity: Record::class, mappedBy: 'category')]
+    private Collection $records;
 
     #[ORM\ManyToOne(inversedBy: 'categories')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,7 +42,7 @@ class Category
 
     public function __construct()
     {
-        $this->assemblies = new ArrayCollection();
+        $this->records = new ArrayCollection();
         $this->setConverter();
     }
 
@@ -91,29 +91,29 @@ class Category
     // }
 
     /**
-     * @return Collection<int, Assembly>
+     * @return Collection<int, record>
      */
-    public function getAssemblies(): Collection
+    public function getRecords(): Collection
     {
-        return $this->assemblies;
+        return $this->records;
     }
 
-    public function addAssembly(Assembly $assembly): static
+    public function addRecord(Record $record): static
     {
-        if (!$this->assemblies->contains($assembly)) {
-            $this->assemblies->add($assembly);
-            $assembly->setCategory($this);
+        if (!$this->records->contains($record)) {
+            $this->records->add($record);
+            $record->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeAssembly(Assembly $assembly): static
+    public function removeRecord(Record $record): static
     {
-        if ($this->assemblies->removeElement($assembly)) {
+        if ($this->records->removeElement($record)) {
             // set the owning side to null (unless already changed)
-            if ($assembly->getCategory() === $this) {
-                $assembly->setCategory(null);
+            if ($record->getCategory() === $this) {
+                $record->setCategory(null);
             }
         }
 

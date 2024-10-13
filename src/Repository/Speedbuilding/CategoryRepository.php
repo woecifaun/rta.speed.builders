@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Assembly;
+namespace App\Repository\Speedbuilding;
 
-use App\Entity\Assembly\Category;
+use App\Entity\Speedbuilding\Category;
 use App\Entity\Furniture\Model;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

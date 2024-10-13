@@ -2,17 +2,16 @@
 
 namespace App\Controller;
 
-use App\Form\Speedbuilding\TimeType;
-use App\Service\Speedbuilding\Time;
-
-use App\Entity\Assembly\Assembly;
 use App\Entity\Furniture\Brand;
 use App\Entity\Furniture\Model;
-use App\Form\Speedbuilding\NewRecordType;
+use App\Entity\Speedbuilding\Record;
 use App\Form\Furniture\BrandSelectorType;
 use App\Form\Furniture\ModelSelectorType;
-use App\Repository\Assembly\AssemblyRepository;
+use App\Form\Speedbuilding\NewRecordType;
+use App\Form\Speedbuilding\TimeType;
 use App\Repository\Furniture\ModelRepository;
+use App\Repository\Speedbuilding\RecordRepository;
+use App\Service\Speedbuilding\Time;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,20 +57,20 @@ class SubmitController extends AbstractController
     }
 
     #[Route('/submit/model-{id}', name: 'submit_speedbuilding')]
-    public function submitSpeedbuilding(Request $request, Model $model, AssemblyRepository $repo): Response
+    public function submitSpeedbuilding(Request $request, Model $model, RecordRepository $repo): Response
     {
-        $assembly = new Assembly();
-        $assembly->timeToHisv();
+        $record = new Record();
+        $record->timeToHisv();
 
-        $form = $this->createForm(NewRecordType::class, $assembly, ['model' => $model]);
+        $form = $this->createForm(NewRecordType::class, $record, ['model' => $model]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DatetimeImmutable();
-            $assembly->setPostDate($now)->HisvToTime();
+            $record->setPostDate($now)->HisvToTime();
 
-            $repo->save($assembly, true);
+            $repo->save($record, true);
 
             return $this->redirectToRoute('home');
         }

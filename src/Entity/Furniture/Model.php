@@ -2,7 +2,7 @@
 
 namespace App\Entity\Furniture;
 
-use App\Entity\Assembly\Category;
+use App\Entity\Speedbuilding\Category;
 use App\Repository\Furniture\ModelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

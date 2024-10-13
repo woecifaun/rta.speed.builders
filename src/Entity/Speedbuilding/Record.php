@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Entity\Assembly;
+namespace App\Entity\Speedbuilding;
 
-use App\Repository\AssemblyRepository;
+use App\Repository\Speedbuilding\RecordRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AssemblyRepository::class)]
-class Assembly
+#[ORM\Entity(repositoryClass: RecordRepository::class)]
+#[ORM\Table(name: 'speedbuilding_record')]
+class Record
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,7 +21,7 @@ class Assembly
     #[ORM\Column(length: 255)]
     private ?string $originalEmailAddress = null;
 
-    #[ORM\ManyToOne(inversedBy: 'assemblies')]
+    #[ORM\ManyToOne(inversedBy: 'records')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 

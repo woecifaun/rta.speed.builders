@@ -2,13 +2,11 @@
 
 namespace App\Form\Speedbuilding;
 
-use App\Entity\Assembly\Assembly;
-use App\Entity\Assembly\Category;
-use App\Repository\Assembly\CategoryRepository;
+use App\Entity\Speedbuilding\Category;
+use App\Entity\Speedbuilding\Record;
+use App\Repository\Speedbuilding\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataMapperInterface;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -36,7 +34,7 @@ class NewRecordType extends AbstractType
             ])
         ;
 
-        // Data Mapper for Assembly::$time
+        // Data Mapper for Category::$time
         $builder
             ->add('hours', IntegerType::class)
             ->add('minutes', IntegerType::class)
@@ -48,52 +46,9 @@ class NewRecordType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Assembly::class,
+            'data_class' => Record::class,
             'empty_data' => null,
             'model' => null,
         ]);
     }
-
-//     /**
-//      * @param Assembly|null $viewData
-//      */
-//     public function mapDataToForms($viewData, \Traversable $forms): void
-//     {
-//         // there is no data yet, so nothing to prepopulate
-//         if (null === $viewData) {
-//             return;
-//         }
-
-//         // invalid data type
-//         if (!$viewData instanceof Assembly) {
-//             throw new UnexpectedTypeException($viewData, Assembly::class);
-//         }
-
-//         /** @var FormInterface[] $forms */
-//         $forms = iterator_to_array($forms);
-
-//         // initialize form field values
-//         $forms['hours']->setData($viewData->getRecordHours());
-//         $forms['minutes']->setData($viewData->getRecordMinutes());
-//         $forms['seconds']->setData($viewData->getRecordSeconds());
-//         $forms['decimal']->setData($viewData->getRecordDecimal());
-//     }
-
-//     public function mapFormsToData(\Traversable $forms, &$viewData): void
-//     {
-//         /** @var FormInterface[] $forms */
-//         $forms = iterator_to_array($forms);
-
-//         // as data is passed by reference, overriding it will change it in
-//         // the form object as well
-//         // beware of type inconsistency, see caution below
-// dump($viewData);die;
-//         $time =
-//             $forms['hours']->getData() * 3600 +
-//             $forms['minutes']->getData() * 60 +
-//             $forms['seconds']->getData() +
-//             floatval("." . $forms['decimal']->getData());
-
-//         $viewData->setTime($time);
-//     }
 }

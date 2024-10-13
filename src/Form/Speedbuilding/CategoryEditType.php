@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Form\Assembly;
+namespace App\Form\Speedbuilding;
 
-use App\Entity\Assembly\Category;
+use App\Entity\Speedbuilding\Category;
 use App\Entity\Furniture\Model;
 use App\Repository\Furniture\ModelRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -11,20 +11,16 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryNewType extends AbstractType
+class CategoryEditType extends AbstractType
 {
     public function __construct(private ModelRepository $repo) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Brand and model cannot be changed (for now ? is it relevant to change it ?)
         $builder
             ->add('name')
             ->add('markdown')
-            ->add('model', EntityType::class, [
-                'choices' => $this->repo->findAllByBrand($options['brand']),
-                'class' => Model::class,
-                'choice_label' => 'name',
-            ])
         ;
     }
 
