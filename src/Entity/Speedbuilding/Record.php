@@ -227,21 +227,21 @@ class Record
 
         if ($this->hours) {
             return
-                sprintf('%02d', $this->hours) . ':' .
-                sprintf('%02d', $this->minutes) . ':' .
-                sprintf('%02d', $this->seconds) . '.' .
-                sprintf('%03d', $this->milliseconds);
+                sprintf('%02d', $this->hours) . 'h ' .
+                sprintf('%02d', $this->minutes) . 'm ' .
+                sprintf('%02d', $this->seconds) . 's ' .
+                sprintf('%03d', $this->milliseconds). 'ms';
         }
 
         if ($this->minutes) {
             return
-                sprintf('%02d', $this->minutes) . ':' .
-                sprintf('%02d', $this->seconds) . '.' .
-                sprintf('%03d', $this->milliseconds);
+                sprintf('%02d', $this->minutes) . 'm ' .
+                sprintf('%02d', $this->seconds) . 's ' .
+                sprintf('%03d', $this->milliseconds). 'ms';
         }
 
         return
-            sprintf('%02d', $this->seconds) . '.' .
-            sprintf('%03d', $this->milliseconds);
+            sprintf('%02d', $this->seconds) . 's ' .
+            sprintf('%03d', $this->milliseconds). 'ms';
     }
 }

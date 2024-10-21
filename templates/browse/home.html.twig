@@ -15,14 +15,18 @@
   </div>
 
   <table class="table table-rtaswc">
-  <tr><th>Category</th><th title="Rank in category">Rank</th><th>Time (h:mn:s.ms)</th><th>Speedbuilder</th><th>Date</th></tr>
+  <tr>
+    <th>Category</th>
+    <th class="text-end">Time (h:mn:s.ms)</th>
+    <th>Speedbuilder</th>
+    <th>Date</th>
+  </tr>
   {% for record in records %}
     <tr>
       <td><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></td>
-      <td>#</td>
-      <td class="text-end" style="font-variant-numeric: tabular-nums;">{{ record.formattedTime }}</td>
+      <td class="text-end tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.formattedTime }}</a></td>
       <td>Speedbuilder</td>
-      <td class="text-end">{{ record.date|date('Y-m-d') }}</td>
+      <td class="tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.date|date('Y-m-d') }}</a></td>
     </tr>
   {% else %}
     No record to list yet!

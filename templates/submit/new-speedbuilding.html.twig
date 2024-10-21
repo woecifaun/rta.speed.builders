@@ -57,13 +57,13 @@
       {{ form_widget(form.attempt) }}
       {{ form_errors(form.attempt) }}
       </div>
-      <div class="form-group">
+      <div class="form-group mb-3">
       <legend>Email address</legend>
-      {{ form_widget(form.originalEmailAddress) }}
+      {{ form_widget(form.originalEmailAddress, {'attr': {'class': 'form-control'}}) }}
       {{ form_errors(form.originalEmailAddress) }}
       </div>
       <div class="form-group">
-          <input type="submit" value="submit" class="btn btn-success">
+          <input type="submit" value="Submit the Record!" class="btn btn-info btn-rtaswc">
       </div>
     </fieldset>
   {{ form_end(form) }}

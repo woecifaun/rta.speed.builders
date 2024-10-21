@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Speedbuilding\Category;
+use App\Entity\Speedbuilding\Record;
 use App\Repository\Speedbuilding\RecordRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,17 @@ class BrowseController extends AbstractController
     public function home(): Response
     {
         $records = $this->repo->findRecordsPostedMostRecently();
+
+        return $this->render('browse/home.html.twig',[
+            'records' => $records,
+        ]);
+    }
+
+    #[Route('/record/{id}', name: 'browse_record')]
+    public function browseRecord(Record $record): Response
+    {
+        dump($record);die;
+        // $records = $this->repo->findBestRecordsForCategory($category);
 
         return $this->render('browse/home.html.twig',[
             'records' => $records,
