@@ -30,7 +30,7 @@ class Record
     private ?float $time = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $PostDate = null;
+    private ?\DateTimeImmutable $postDate = null;
 
     #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private ?\DateTimeImmutable $date = null;
@@ -101,12 +101,12 @@ class Record
 
     public function getPostDate(): ?\DateTimeImmutable
     {
-        return $this->PostDate;
+        return $this->postDate;
     }
 
-    public function setPostDate(\DateTimeImmutable $PostDate): static
+    public function setPostDate(\DateTimeImmutable $postDate): static
     {
-        $this->PostDate = $PostDate;
+        $this->postDate = $postDate;
 
         return $this;
     }
@@ -178,9 +178,9 @@ class Record
             return 0;
         }
 
-        $decimal = sscanf($this->time, '%d.%d')[1];
+        $milliseconds = sscanf($this->time, '%d.%d')[1];
 
-        return intval($decimal);
+        return intval($milliseconds);
     }
 
     public function setMilliseconds(int $milliseconds)
@@ -207,7 +207,7 @@ class Record
             $this->milliseconds = 0;
         } else {
             $milliseconds = sscanf($this->time, '%d.%d')[1];
-            $this->milliseconds = intval($decimal);
+            $this->milliseconds = intval($milliseconds);
 
         }
     }
@@ -219,5 +219,29 @@ class Record
             $this->minutes * 60 +
             $this->seconds +
             floatval("." . $this->milliseconds);
+    }
+
+    public function formattedTime(): string
+    {
+        $this->timeToHisv();
+
+        if ($this->hours) {
+            return
+                sprintf('%02d', $this->hours) . ':' .
+                sprintf('%02d', $this->minutes) . ':' .
+                sprintf('%02d', $this->seconds) . '.' .
+                sprintf('%03d', $this->milliseconds);
+        }
+
+        if ($this->minutes) {
+            return
+                sprintf('%02d', $this->minutes) . ':' .
+                sprintf('%02d', $this->seconds) . '.' .
+                sprintf('%03d', $this->milliseconds);
+        }
+
+        return
+            sprintf('%02d', $this->seconds) . '.' .
+            sprintf('%03d', $this->milliseconds);
     }
 }

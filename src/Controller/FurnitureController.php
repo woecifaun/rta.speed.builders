@@ -60,7 +60,7 @@ class FurnitureController extends AbstractController
             return $this->redirectToRoute('home', ["id" => $brand->getId()]);
         }
 
-        return $this->render('furniture/brand.html.twig', [
+        return $this->render('furniture/brand-edit.html.twig', [
             'form' => $form,
             'brand' => $brand,
         ]);

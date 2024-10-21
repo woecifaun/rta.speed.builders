@@ -8,7 +8,7 @@
 {% set config = {display_poster: true} %}
 
 
-<section class="container">
+<section>
   <div class="row">
     <div class="col">
       <h2 class="page-h2">{{category.name}}</h2>
@@ -18,10 +18,10 @@
 
   <div class="row">
     <div class="col">
-      <div class="category-html mb-3 mt-3">
+      <div class="category-html mb-3 mt-3" id="category-rules">
         {{ category.html|raw }}
       </div>
-      <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info">Edit</a>
+      <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info btn-rtaswc">Edit</a>
     </div>
   </div>
 </section>

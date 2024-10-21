@@ -8,13 +8,14 @@
 {% set config = {display_poster: true} %}
 
 
-<section class="container">
+<section>
   <div class="row">
     <div class="col">
       <h2 class="page-h2">Create a New Speedbuilding Category</h2>
     </div>
   </div>
 
+  {% if brand.models|length %}
   <form method="post">
     <fieldset class="form-row">
       <div class="form-group">
@@ -37,6 +38,12 @@
       </div>
     </fieldset>
   {{ form_end(form) }}
+  {% else %}
+  <div class="alert alert-info">
+    No model available for the brand <strong>{{ brand.name }}</strong>.
+    <a href="{{ path('manage_model_add', {'brand-id': brand.id}) }}">Please add a model!</a>
+  </div>
+  {% endif %}
 
 
 </section>

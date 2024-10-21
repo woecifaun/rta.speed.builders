@@ -23,20 +23,20 @@ class RecordRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    //    /**
-    //     * @return Record[] Returns an array of Record objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+
+    /**
+     * @return Record[] Returns an array of Record objects
+     */
+    public function findRecordsPostedMostRecently(int $limit = 10): array
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.postDate', 'DESC')
+            // ->lim
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Record
     //    {

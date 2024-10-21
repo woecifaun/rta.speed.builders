@@ -1,17 +1,16 @@
-{% set page = 'assembly' %}
+{% set page = 'brand' %}
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}RTA Speedbuilders - Manage Speedbuilding Categories }}{% endblock %}
+{% block title %}RTA Speedbuilders - Edit brand : {{ brand.name }}{% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
-
 <section>
   <div class="row">
     <div class="col">
-      <h2 class="page-h2">Edit the Category</h2>
+      <h2 class="page-h2">Edit Brand : {{ brand.name }}</h2>
     </div>
   </div>
 
@@ -23,13 +22,12 @@
         {{ form_errors(form.name) }}
         </div>
       <div class="form-group mb-3">
-        <legend>Description (Markdown format)</legend>
-        {{ form_widget(form.markdown, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.markdown) }}
+        <legend>Website</legend>
+        {{ form_widget(form.website, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.website) }}
         </div>
       <div class="form-group mb-3">
-        <input type="submit" name="Save" value="save" class="btn btn-success btn-rtaswc">
-        <a href="{{ path('manage_category_preview', {'id': category.id}) }}" class="btn btn-info btn-rtaswc">Preview</a>
+        <input type="submit" name="Save" value="save" class="btn btn-success">
       </div>
     </fieldset>
   {{ form_end(form) }}

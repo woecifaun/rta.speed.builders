@@ -1,5 +1,6 @@
 main {
   margin-top: 5em;
+  min-height: 80vh;
 }
 
 .page-h2 {
@@ -16,4 +17,40 @@ main {
   color: red;
   display:inline;
   width: unset;
+}
+
+footer {
+  text-align: center;
+}
+
+.btn.btn-rtaswc {
+  border-radius: 2px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 4px;
+  transform: skew(-12deg, 0);
+  margin-left: 0.2em;
+}
+
+#category-rules {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: solid gray thin;
+  border-top: solid gray thin;
+}
+
+.table.table-rtaswc tr {
+  & td {
+    transform: skew(-45deg, 0);
+  }
+  &:nth-of-type(3n-2) td {
+    background-color: turquoise;
+  }
+  &:nth-of-type(3n-1) td {
+    background-color: yellow;
+  }
+  &:nth-of-type(3n) td {
+    background-color: lightgray;
+  }
 }
