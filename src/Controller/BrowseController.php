@@ -32,11 +32,8 @@ class BrowseController extends AbstractController
     #[Route('/record/{id}', name: 'browse_record')]
     public function browseRecord(Record $record): Response
     {
-        dump($record);die;
-        // $records = $this->repo->findBestRecordsForCategory($category);
-
-        return $this->render('browse/home.html.twig',[
-            'records' => $records,
+        return $this->render('browse/record.html.twig',[
+            'record' => $record,
         ]);
     }
 

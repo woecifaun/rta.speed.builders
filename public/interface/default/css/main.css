@@ -48,12 +48,6 @@ nav.navbar.bg-light {
   width: unset;
 }
 
-.badge.badge-link a {
-  text-decoration: none;
-  color: white;
-  font-weight: 400;
-}
-
 .btn.btn-rtaswc {
   border-radius: 2px;
   border-top-left-radius: 6px;
@@ -102,4 +96,24 @@ nav.navbar.bg-light {
       border-left: solid rgba(255,255,255,0.8) 5px;
     }
   }
+}
+
+#record-card .col div .col {
+
+    & h3 {
+      color: var(--translucency-prime);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: -.26em;
+      text-align: left;
+      font-size: 1.5em;
+    }
+
+    & .info {
+      padding:.5em;
+      background-color: var(--translucency-prime);
+      transform: skew(-12deg);
+      font-size: 2em;
+    }
 }
