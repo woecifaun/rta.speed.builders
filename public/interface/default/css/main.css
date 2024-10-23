@@ -56,10 +56,14 @@ nav.navbar.bg-light {
   border-bottom-right-radius: 4px;
   transform: skew(-12deg, 0);
   margin-left: 0.2em;
+  padding-left: 2em;
 }
 
 .btn.btn-info.btn-rtaswc {
   border: solid white 1px;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 #category-rules {

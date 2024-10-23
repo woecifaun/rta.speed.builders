@@ -1,0 +1,57 @@
+{% set page = 'record' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - {{ record.category.name }} in {{ record.formattedTime}} {% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Record Overview</h2>
+    </div>
+  </div>
+
+  <div class="row" id="record-card">
+    <div class="col col-12 col-md-6">
+      <div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Brand</h3>
+          <div class="info">{{ record.category.model.brand.name }}</div>
+        </div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Model</h3>
+          <div class="info">{{ record.category.model.name }}</div>
+        </div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Category</h3>
+          <div class="info">{{ record.category.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-12 col-md-6">
+      <div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Speedbuilder</h3>
+          <div class="info">Speedbuilder</div>
+        </div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Date</h3>
+          <div class="info">{{ record.date|date('Y-m-d') }}</div>
+        </div>
+        <div class="col col-12 mb-3 text-center">
+          <h3>Time</h3>
+          <div class="info">{{ record.formattedTime }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+  </div>
+</section>
+
+{% endblock %}
