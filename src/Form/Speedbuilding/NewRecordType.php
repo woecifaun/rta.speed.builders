@@ -20,7 +20,7 @@ class NewRecordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url')
+            ->add('videoUrl')
             ->add('originalEmailAddress', EmailType::class)
             ->add('date', DateType::class, [
                 'widget' => 'single_text',

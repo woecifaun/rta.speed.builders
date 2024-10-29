@@ -16,7 +16,7 @@ class Record
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $url = null;
+    private ?string $videoUrl = null;
 
     #[ORM\Column(length: 255)]
     private ?string $originalEmailAddress = null;
@@ -46,19 +46,25 @@ class Record
     private $seconds;
     private $milliseconds;
 
+    #[ORM\Column(length: 255)]
+    private ?string $videoPlatform = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $videoId = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUrl(): ?string
+    public function getVideoUrl(): ?string
     {
-        return $this->url;
+        return $this->videoUrl;
     }
 
-    public function setUrl(string $url): static
+    public function setVideoUrl(string $videoUrl): static
     {
-        $this->url = $url;
+        $this->videoUrl = $videoUrl;
 
         return $this;
     }
@@ -190,7 +196,7 @@ class Record
         return $this;
     }
 
-    public function timeToHisv()
+    public function timeToHisv(): static
     {
         // hours
         $this->hours = intval($this->time / 3600);
@@ -210,15 +216,19 @@ class Record
             $this->milliseconds = intval($milliseconds);
 
         }
+
+        return $this;
     }
 
-    public function HisvToTime()
+    public function HisvToTime(): static
     {
         $this->time =
             $this->hours * 3600 +
             $this->minutes * 60 +
             $this->seconds +
             floatval("." . $this->milliseconds);
+
+        return $this;
     }
 
     public function formattedTime(): string
@@ -243,5 +253,29 @@ class Record
         return
             sprintf('%02d', $this->seconds) . 's ' .
             sprintf('%03d', $this->milliseconds). 'ms';
+    }
+
+    public function getVideoPlatform(): ?string
+    {
+        return $this->videoPlatform;
+    }
+
+    public function setVideoPlatform(string $videoPlatform): static
+    {
+        $this->videoPlatform = $videoPlatform;
+
+        return $this;
+    }
+
+    public function getVideoId(): ?string
+    {
+        return $this->videoId;
+    }
+
+    public function setVideoId(string $videoId): static
+    {
+        $this->videoId = $videoId;
+
+        return $this;
     }
 }

@@ -50,7 +50,7 @@
   </div>
 
   <div class="row mt-5 mb-5">
-    <iframe class="youtube-container" src="https://www.youtube.com/embed/zD2hev7GiRA?si=FimRzRIL51hu5tIB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  {{ include('shared/video-container/' ~ record.videoPlatform ~ '.html.twig' , {id: record.videoId}) }}
   </div>
 </section>
 

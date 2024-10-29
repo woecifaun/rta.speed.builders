@@ -11,8 +11,10 @@ use App\Form\Speedbuilding\NewRecordType;
 use App\Form\Speedbuilding\TimeType;
 use App\Repository\Furniture\ModelRepository;
 use App\Repository\Speedbuilding\RecordRepository;
-use App\Service\Speedbuilding\Time;
+use App\Service\VideoIdParser\Exception as VidException;
+use App\Service\VideoIdParser\VideoIdParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -60,19 +62,34 @@ class SubmitController extends AbstractController
     public function submitSpeedbuilding(Request $request, Model $model, RecordRepository $repo): Response
     {
         $record = new Record();
-        $record->timeToHisv();
+        $record->timeToHisv(); // compute time in seconds to H:i:s.u for form view
 
         $form = $this->createForm(NewRecordType::class, $record, ['model' => $model]);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $now = new \DatetimeImmutable();
-            $record->setPostDate($now)->HisvToTime();
+        if ($form->isSubmitted()) {
 
-            $repo->save($record, true);
+            try {
+                $video = (new VideoIdParser)->getPlatformAndId($record->getVideoUrl());
+            } catch (VidException $e) {
+                $form->get('videoUrl')->addError(new FormError('Video URL couldn\'t be analyzed! Please check your video URL.'));
+             // dump($e);die;
+            }
 
-            return $this->redirectToRoute('home');
+            if ($form->isValid()) {
+                $record
+                    ->setPostDate(new \DatetimeImmutable())
+                    ->HisvToTime()
+                    ->setVideoPlatform($video['platform'])
+                    ->setVideoId($video['id'])
+                ;
+
+
+                $repo->save($record, true);
+
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render('submit/new-speedbuilding.html.twig', [
