@@ -26,7 +26,7 @@
 
 
 <section id="flash-messages" class="row">
-{% set classes = {'success': 'success', 'error': 'danger'}  %}
+{% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}
 {% for type,flashes in app.session.flashBag.all %}
   {% set class = attribute(classes, type) %}
   {% for flash in flashes %}
