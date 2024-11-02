@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">RTA Speedbuilders</a>
+    <a class="navbar-brand" href="{{ path('home') }}">RTA Speedbuilders</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,12 +11,24 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Manage
           </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="{{ path('manage_category_select_brand') }}">Create a Speed Building category</a></li>
-              <li><a class="dropdown-item" href="{{ path('manage_model_add') }}">Add a model of furniture</a></li>
-              <li><a class="dropdown-item" href="{{ path('manage_brand_add') }}">Add a brand of furniture</a></li>
-            </ul>
-          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{ path('manage_category_select_brand') }}">Create a Speed Building category</a></li>
+            <li><a class="dropdown-item" href="{{ path('manage_model_add') }}">Add a model of furniture</a></li>
+            <li><a class="dropdown-item" href="{{ path('manage_brand_add') }}">Add a brand of furniture</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="user-buttons">
+        {% if app.user %}
+        <a href="{{ path('user_settings') }}"><i class="bi-person-circle"></i></a>
+        <a href="{{ path('security_logout') }}"><i class="bi-box-arrow-right text-danger"></i></a>
+        {% else %}
+        <a href="{{ path('security_register') }}">Sign Up</a>
+        <a href="{{ path('security_login') }}">Log In</a>
+        {% endif %}
       </div>
     </div>
   </div>

@@ -3,43 +3,54 @@
 namespace App\Controller;
 
 use App\Entity\User\User;
-use App\Form\User\SignUpType;
+use App\Form\User\DisplayNameType;
+use App\Repository\User\UserRepository;
 use App\Service\User\Registrar;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException As DuplicateException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/sign-up', name: 'user_register')]
-    public function register(
-        Request $request,
-        Registrar $registrar
-    ): Response {
-        $user = new User();
+    public function __construct(private UserRepository $repo) {}
 
-        $form = $this->createForm(SignUpType::class, $user);
+    #[Route('/my/profile', name: 'user_profile')]
+    public function userProfile(): Response
+    {
+        return $this->render('user/profile.html.twig');
+    }
+
+    #[Route('/my/settings', name: 'user_settings')]
+    public function settingList(): Response
+    {
+        return $this->render('user/settings.html.twig');
+    }
+
+    #[Route('/my/display-name', name: 'user_display_name')]
+    public function displayName(#[CurrentUser] ?User $user, Request $request): Response
+    {
+        $form = $this->createForm(DisplayNameType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $registrar->register($user);
+            try {
+                $this->repo->save($user, true);
 
-            $this->addFlash('notice', 'Acount created!');
+                $this->addFlash('notice', 'Display name updated');
 
-            return $this->redirectToRoute('user_register_email_sent');
+                return $this->redirectToRoute('user_settings');
+            } catch (DuplicateException $e) {
+                $form->get('displayName')->addError(new FormError('Display name already in use. Please select another one'));
+
+            }
         }
 
-        return $this->render('user/sign-up.html.twig', [
+        return $this->render('user/display-name.html.twig', [
             'form' => $form,
-            'user' => $user,
         ]);
     }
-
-    #[Route('/user/pending-validation', name: 'user_register_email_sent')]
-    public function registerEmailSent(): Response
-    {
-        return $this->render('user/pending-validation.html.twig');
-    }
-
 }

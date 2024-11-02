@@ -47,6 +47,14 @@ nav.navbar.bg-light {
   background-color: var(--translucency-prime) !important;
 }
 
+nav .user-buttons {
+  font-size: 2em;
+
+  & a {
+    color: black;
+  }
+}
+
 /* PLAYERS */
 iframe.youtube-container {
   aspect-ratio: 16/9;
@@ -162,6 +170,59 @@ iframe.youtube-container {
     & .time-info {
       color: yellow;
     }
+}
+
+/* SETTINGS */
+
+#setting-list {
+  border-radius: var(--bs-border-radius);
+  background-color: var(--translucency-prime);
+
+  & a {
+    padding: 0.5em;
+    display: block;
+    text-decoration: none;
+    position: relative;
+
+    &:first-child {
+      border-top-left-radius: var(--bs-border-radius);
+      border-top-right-radius: var(--bs-border-radius);
+    }
+
+    &:last-child {
+      border-bottom-left-radius: var(--bs-border-radius);
+      border-bottom-right-radius: var(--bs-border-radius);
+    }
+  }
+
+  & a:hover {
+    color: black;
+    background-color: white;
+  }
+
+  & a:after {
+    content: '>';
+    text-align: right;
+    position: absolute;
+    top: .5em;
+    right: .5em;
+  }
+}
+
+.back-to-list {
+  background-color: var(--translucency-prime);
+  border-radius: var(--bs-border-radius);
+
+  & a {
+    display: block;
+    border-radius: var(--bs-border-radius);
+    text-decoration: none;
+    padding: .5em;
+
+    &:hover {
+      background-color: white;
+    }
+  }
 }
 
 /* MISC */

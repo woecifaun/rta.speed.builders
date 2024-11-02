@@ -1,0 +1,40 @@
+{% set page = 'user' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - Change Display Name{% endblock %}
+
+{% block payload %}
+<section id="user-settings">
+  <div class="row">
+    <div class="col mb-3">
+      <div class="back-to-list">
+        <a href="{{ path('user_settings') }}"><i class="bi bi-chevron-left"></i>Back to setting list.</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Change Display Name</h2>
+    </div>
+  </div>
+
+  <form method="post">
+    <fieldset class="form-row">
+      <div class="form-group mt-3">
+        <legend>Display Name</legend>
+        {{ form_widget(form.displayName) }}
+        {{ form_errors(form.displayName) }}
+        <div class="form-helper">
+          Display name must be unique amongst all speedbuilders.
+        </div>
+      </div>
+
+      <div class="form-group mt-3 mb-3">
+          <button type="submit" class="btn btn-info btn-rtaswc">→ next</button>
+      </div>
+    </fieldset>
+  {{ form_end(form) }}
+</section>
+{% endblock %}
