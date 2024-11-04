@@ -73,8 +73,9 @@ class SubmitController extends AbstractController
             try {
                 $video = (new VideoIdParser)->getPlatformAndId($record->getVideoUrl());
             } catch (VidException $e) {
-                $form->get('videoUrl')->addError(new FormError('Video URL couldn\'t be analyzed! Please check your video URL.'));
-             // dump($e);die;
+                $form
+                    ->get('videoUrl')
+                    ->addError(new FormError('Video URL couldn\'t be analyzed! Please check your video URL.'));
             }
 
             if ($form->isValid()) {
@@ -85,10 +86,14 @@ class SubmitController extends AbstractController
                     ->setVideoId($video['id'])
                 ;
 
+                if ($user = $this->getUser()) {
+                    $record->setSpeedbuilder($user);
+                }
+
 
                 $repo->save($record, true);
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('browse_record', ['id' => $record->getId()]);
             }
         }
 

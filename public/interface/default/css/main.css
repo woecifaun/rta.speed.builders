@@ -42,6 +42,12 @@ footer {
   }
 }
 
+span.svg-flag {
+  display: inline-block;
+  height: 1.5em;
+  aspect-ratio: 4/3;
+}
+
 /* NAV */
 nav.navbar.bg-light {
   background-color: var(--translucency-prime) !important;
@@ -142,6 +148,14 @@ iframe.youtube-container {
 
     & td:first-child {
       border-left: solid rgba(255,255,255,0.8) 5px;
+    }
+
+    & a {
+      text-decoration: none;
+    }
+
+    & span.svg-flag {
+      transform: skew(12deg, 0);
     }
   }
 }

@@ -25,7 +25,17 @@
     <tr>
       <td><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></td>
       <td class="text-end tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.formattedTime }}</a></td>
-      <td>Speedbuilder</td>
+      <td>
+        {% if record.speedbuilder %}
+        <a href="{{ path('browse_speedbuilder', {username: record.speedbuilder.username}) }}">
+        <span class="svg-flag">{{ include('svg/flag/' ~ (record.speedbuilder.country|lower ?: 'un') ~ '.svg') }}</span>
+        {{ record.speedbuilder.displayName}}
+        </a>
+        {% else %}
+        <span class="svg-flag">{{ include('svg/flag/un.svg') }}</span>
+        Anonymous
+        {% endif %}
+      </td>
       <td class="tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.date|date('Y-m-d') }}</a></td>
     </tr>
   {% else %}

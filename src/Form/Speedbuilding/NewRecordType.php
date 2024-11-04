@@ -6,6 +6,7 @@ use App\Entity\Speedbuilding\Category;
 use App\Entity\Speedbuilding\Record;
 use App\Repository\Speedbuilding\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,13 +16,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewRecordType extends AbstractType
 {
-    public function __construct(private CategoryRepository $repo) {}
+    public function __construct(private CategoryRepository $repo, private Security $security) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $this->security->getUser();
+
         $builder
             ->add('videoUrl')
-            ->add('originalEmailAddress', EmailType::class)
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
             ])
@@ -34,7 +36,12 @@ class NewRecordType extends AbstractType
             ])
         ;
 
-        // Data Mapper for Category::$time
+        // For anonymous post only
+        if (is_null($user)) {
+            $builder->add('originalEmailAddress', EmailType::class);
+        }
+
+        // Helpers for Record::$time
         $builder
             ->add('hours', IntegerType::class)
             ->add('minutes', IntegerType::class)

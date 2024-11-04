@@ -23,17 +23,17 @@
   {% else %}
   <form method="post">
     <fieldset class="form-row">
-      <div class="form-group">
+      <div class="form-group mt-3">
       <legend>Select the category for {{ model.brand.name }} | {{ model.name }}</legend>
       {{ form_widget(form.category) }}
       {{ form_errors(form.category) }}
       </div>
-      <div class="form-group">
+      <div class="form-group mt-3">
       <legend>Video URL</legend>
       {{ form_widget(form.videoUrl) }}
       {{ form_errors(form.videoUrl) }}
       </div>
-      <div class="form-group record-time">
+      <div class="form-group mt-3 record-time">
       <legend>Time (Hours:Minutes:Seconds.milliseconds)</legend>
       {{ form_widget(form.hours, {'attr': {'max': '99', 'min': '0'}}) }}
       {{ form_errors(form.hours) }}
@@ -47,22 +47,24 @@
       {{ form_widget(form.milliseconds, {'attr': {'max': '999', 'min': '0'}}) }}
       {{ form_errors(form.milliseconds) }}
       </div>
-      <div class="form-group">
+      <div class="form-group mt-3">
       <legend>Date of record</legend>
       {{ form_widget(form.date) }}
       {{ form_errors(form.date) }}
       </div>
-      <div class="form-group">
-      <legend>attemppt number</legend>
+      <div class="form-group mt-3">
+      <legend>Attempt number</legend>
       {{ form_widget(form.attempt) }}
       {{ form_errors(form.attempt) }}
       </div>
-      <div class="form-group mb-3">
+      {% if not app.user %}
+      <div class="form-group mt-3 mb-3">
       <legend>Email address</legend>
       {{ form_widget(form.originalEmailAddress, {'attr': {'class': 'form-control'}}) }}
       {{ form_errors(form.originalEmailAddress) }}
       </div>
-      <div class="form-group">
+      {% endif %}
+      <div class="form-group mt-3">
           <button type="submit" class="btn btn-info btn-rtaswc">&check; submit</button>
       </div>
     </fieldset>

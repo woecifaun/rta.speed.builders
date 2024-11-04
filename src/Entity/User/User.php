@@ -2,6 +2,7 @@
 
 namespace App\Entity\User;
 
+use App\Entity\Speedbuilding\Record;
 use App\Repository\User\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -52,6 +53,20 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     #[ORM\Column(length: 50)]
     private ?string $status = null;
+
+    /**
+     * @var Collection<int, Record>
+     */
+    #[ORM\OneToMany(targetEntity: Record::class, mappedBy: 'speedbuilder')]
+    private Collection $records;
+
+    #[ORM\Column(length: 3, nullable: true)]
+    private ?string $country = null;
+
+    public function __construct()
+    {
+        $this->records = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -164,6 +179,48 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Record>
+     */
+    public function getRecords(): Collection
+    {
+        return $this->records;
+    }
+
+    public function addRecord(Record $record): static
+    {
+        if (!$this->records->contains($record)) {
+            $this->records->add($record);
+            $record->setSpeedbuilder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecord(Record $record): static
+    {
+        if ($this->records->removeElement($record)) {
+            // set the owning side to null (unless already changed)
+            if ($record->getSpeedbuilder() === $this) {
+                $record->setSpeedbuilder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }

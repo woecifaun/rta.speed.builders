@@ -2,6 +2,7 @@
 
 namespace App\Entity\Speedbuilding;
 
+use App\Entity\User\User;
 use App\Repository\Speedbuilding\RecordRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,7 +19,9 @@ class Record
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
-    #[ORM\Column(length: 255)]
+    // Used in case of anonymous post
+    // If a user signs up with the same email address, all records will be linked to user
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $originalEmailAddress = null;
 
     #[ORM\ManyToOne(inversedBy: 'records')]
@@ -52,6 +55,9 @@ class Record
     #[ORM\Column(length: 255)]
     private ?string $videoId = null;
 
+    #[ORM\ManyToOne(inversedBy: 'records')]
+    private ?User $speedbuilder = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,7 +80,7 @@ class Record
         return $this->originalEmailAddress;
     }
 
-    public function setOriginalEmailAddress(string $originalEmailAddress): static
+    public function setOriginalEmailAddress(?string $originalEmailAddress): static
     {
         $this->originalEmailAddress = $originalEmailAddress;
 
@@ -275,6 +281,18 @@ class Record
     public function setVideoId(string $videoId): static
     {
         $this->videoId = $videoId;
+
+        return $this;
+    }
+
+    public function getSpeedbuilder(): ?User
+    {
+        return $this->speedbuilder;
+    }
+
+    public function setSpeedbuilder(?User $speedbuilder): static
+    {
+        $this->speedbuilder = $speedbuilder;
 
         return $this;
     }

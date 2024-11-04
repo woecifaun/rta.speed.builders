@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User\User;
+use App\Form\User\CountryType;
 use App\Form\User\DisplayNameType;
 use App\Repository\User\UserRepository;
 use App\Service\User\Registrar;
@@ -50,6 +51,25 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/display-name.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/my/country', name: 'user_country')]
+    public function country(#[CurrentUser] ?User $user, Request $request): Response
+    {
+        $form = $this->createForm(CountryType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->repo->save($user, true);
+
+            $this->addFlash('notice', 'Country updated');
+
+            return $this->redirectToRoute('user_settings');
+        }
+
+        return $this->render('user/country.html.twig', [
             'form' => $form,
         ]);
     }
