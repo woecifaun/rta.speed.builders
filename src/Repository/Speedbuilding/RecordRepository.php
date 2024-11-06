@@ -38,13 +38,41 @@ class RecordRepository extends ServiceEntityRepository
         ;
     }
 
-    //    public function findOneBySomeField($value): ?Record
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * @return Record[] Returns an array of Record objects
+     */
+    public function getRank(Record $record): int
+    {
+        $qb = $this->createQueryBuilder('r');
+
+        $qb->select($qb->expr()->count('r.id'))
+            ->andWhere('r.time < :time')
+            ->setParameter('time', $record->getTime())
+            ->andWhere('r.category = :category')
+            ->setParameter('category', $record->getCategory())
+        ;
+
+        return 1 + $qb
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function propagateRank(Record $record)
+    {
+        $records = $this->createQueryBuilder('r')
+            ->andWhere('r.time > :time')
+            ->setParameter('time', $record->getTime())
+            ->andWhere('r.category = :category')
+            ->setParameter('category', $record->getCategory())
+            ->getQuery()
+            ->getResult()
+        ;
+
+        foreach ($records as $loopRecord) {
+            $loopRecord->incrementRank();
+            $this->getEntityManager()->persist($loopRecord);
+        }
+
+        $this->getEntityManager()->flush();
+    }
 }

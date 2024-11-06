@@ -160,7 +160,7 @@ iframe.youtube-container {
   }
 }
 
-#record-card .col div .col
+#record-card .col
 {
     & h3 {
       color: var(--translucency-prime);
@@ -173,12 +173,23 @@ iframe.youtube-container {
     }
 
     & .info {
-      padding:.5em;
+      padding:.3em;
       background-color: var(--translucency-prime);
       transform: skew(-12deg);
       font-size: 2em;
       font-family: "Russo One", sans-serif;
       color: rgba(0,0,0,0.7);
+
+      & a {
+        text-decoration: none;
+        color: rgba(0,0,0,0.7);
+        display: block;
+      }
+
+      & span.svg-flag {
+        transform: skew(12deg);
+        height: 1.2em;
+      }
     }
 
     & .time-info {

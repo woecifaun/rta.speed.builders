@@ -23,7 +23,7 @@
 
 {% include 'shared/menu.html.twig' %}
 
-<main class="container">
+<main class="container" id="{{ page is defined ? page }}">
 
 <section id="flash-messages" class="row">
 {% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}

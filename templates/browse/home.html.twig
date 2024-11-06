@@ -18,6 +18,7 @@
   <tr>
     <th>Category</th>
     <th class="text-end">Time (h:mn:s.ms)</th>
+    <th>Rank</th>
     <th>Speedbuilder</th>
     <th>Date</th>
   </tr>
@@ -25,6 +26,7 @@
     <tr>
       <td><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></td>
       <td class="text-end tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.formattedTime }}</a></td>
+      <td class="tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">#{{ record.rank }}</a></td>
       <td>
         {% if record.speedbuilder %}
         <a href="{{ path('browse_speedbuilder', {username: record.speedbuilder.username}) }}">

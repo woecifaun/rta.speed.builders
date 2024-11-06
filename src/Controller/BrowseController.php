@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Furniture\Brand;
+use App\Entity\Furniture\Model;
 use App\Entity\Speedbuilding\Category;
 use App\Entity\Speedbuilding\Record;
 use App\Entity\User\User;
@@ -53,7 +55,28 @@ class BrowseController extends AbstractController
     #[Route('/speedbuilder/{username}', name: 'browse_speedbuilder')]
     public function browseSpeedbuilder(#[MapEntity(mapping: ['username' => 'username'])] User $user): Response
     {
-        dump($user);die;
+        // $records = $this->repo->findBestRecordsForCategory($category);
+
+        return $this->render('browse/speedbuilder.html.twig',[
+            'speedbuilder' => $user,
+        ]);
+    }
+
+    #[Route('/model/{id}', name: 'browse_model')]
+    public function browseModel(Model $model): Response
+    {
+        dump($model);die;
+        // $records = $this->repo->findBestRecordsForCategory($category);
+
+        return $this->render('browse/home.html.twig',[
+            'records' => $records,
+        ]);
+    }
+
+    #[Route('/brand/{id}', name: 'browse_brand')]
+    public function browseBrand(Brand $brand): Response
+    {
+        dump($brand);die;
         // $records = $this->repo->findBestRecordsForCategory($category);
 
         return $this->render('browse/home.html.twig',[

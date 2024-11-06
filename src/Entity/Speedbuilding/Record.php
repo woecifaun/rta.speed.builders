@@ -58,6 +58,12 @@ class Record
     #[ORM\ManyToOne(inversedBy: 'records')]
     private ?User $speedbuilder = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $rank = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $bestRank = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,7 +105,7 @@ class Record
         return $this;
     }
 
-    public function getTime(): ?\DateTimeImmutable
+    public function getTime(): float
     {
         return $this->time;
     }
@@ -293,6 +299,37 @@ class Record
     public function setSpeedbuilder(?User $speedbuilder): static
     {
         $this->speedbuilder = $speedbuilder;
+
+        return $this;
+    }
+
+    public function getRank(): ?int
+    {
+        return $this->rank;
+    }
+
+    public function setRank(?int $rank): static
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function incrementRank(): static
+    {
+        $this->rank++;
+
+        return $this;
+    }
+
+    public function getBestRank(): ?int
+    {
+        return $this->bestRank;
+    }
+
+    public function setBestRank(?int $bestRank): static
+    {
+        $this->bestRank = $bestRank;
 
         return $this;
     }

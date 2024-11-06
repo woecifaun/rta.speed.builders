@@ -111,7 +111,7 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function getRegisteredOn(): ?\DateTimeImmutable
     {
-        return $this->resisteredOn;
+        return $this->registeredOn;
     }
 
     public function setRegisteredOn(\DateTimeImmutable $registeredOn): static

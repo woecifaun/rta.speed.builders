@@ -1,0 +1,27 @@
+{% set page = 'speedbuilder' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - {{ speedbuilder.displayName }} {% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section>
+  <div class="row">
+    <div class="col mb-5">
+      <h2 class="page-h2 ">{{ speedbuilder.displayName }}</h2>
+      <div><span class="badge bg-secondary">{{ speedbuilder.username }}</span> Joined the community on {{ speedbuilder.registeredOn|date('Y-m-d') }}</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">{{ speedbuilder.records|length }} Record{{ speedbuilder.records|length > 1 ? 's' : '' }}</h2>
+      {{ include('browse/record-table.html.twig', {records: speedbuilder.records, cols: ['category', 'bestRank']}) }}
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
