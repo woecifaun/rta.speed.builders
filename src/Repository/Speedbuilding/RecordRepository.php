@@ -2,6 +2,7 @@
 
 namespace App\Repository\Speedbuilding;
 
+use App\Entity\Speedbuilding\Category;
 use App\Entity\Speedbuilding\Record;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,7 +32,6 @@ class RecordRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.postDate', 'DESC')
-            // ->lim
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
@@ -40,6 +40,20 @@ class RecordRepository extends ServiceEntityRepository
 
     /**
      * @return Record[] Returns an array of Record objects
+     */
+    public function findBestRecordsForCategory(Category $category): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('r.time', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Record[] current rank for a Record
      */
     public function getRank(Record $record): int
     {
@@ -57,6 +71,9 @@ class RecordRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * method called through an event listener on kernel.terminate
+     */
     public function propagateRank(Record $record)
     {
         $records = $this->createQueryBuilder('r')

@@ -21,8 +21,7 @@ security:
                 enable_csrf: true
             logout:
                 path: security_logout
-                # where to redirect after logout
-                # target: app_any_route
+                target: home
 
             remember_me:
                 secret:   '%kernel.secret%' # required

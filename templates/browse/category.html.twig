@@ -1,0 +1,45 @@
+{% set page = 'category' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - {{ category.name }} {% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section>
+  <div class="row">
+    <div class="col mb-5">
+      <h2 class="page-h2 ">{{ category.name }}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-5">
+      <details class="category-rules">
+        <summary>Rules</summary>
+        <div>
+          {{ category.html|raw }}
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-6 mb-3">
+      <h2 class="page-h3 ">{{ records|length }} Record{{ records|length > 1 ? 's' }}</h2>
+    </div>
+    <div class="col-md-6 text-end">
+      <a href="{{ path('submit_speedbuilding', {id: category.model.id, category: category.id}) }}" class="btn btn-info btn-rtaswc">Submit a new Speedbuilding Record</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      {{ include('browse/record-table.html.twig', {records: records, cols: ['speedbuilder', 'bestRank']}) }}
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

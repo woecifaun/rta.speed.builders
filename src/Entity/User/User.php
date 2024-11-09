@@ -2,6 +2,7 @@
 
 namespace App\Entity\User;
 
+use App\Entity\Speedbuilding\Category;
 use App\Entity\Speedbuilding\Record;
 use App\Repository\User\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -23,7 +24,7 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     public const STATUS_ACTIVE = 'active';
 
     #[ORM\Column(type: 'json')]
-    private array $roles = [];
+    private array $roles = ['ROLE_USER'];
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -63,9 +64,16 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     #[ORM\Column(length: 3, nullable: true)]
     private ?string $country = null;
 
+    /**
+     * @var Collection<int, Category>
+     */
+    #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'createdBy')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->records = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +229,36 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     public function setCountry(?string $country): static
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getCreatedBy() === $this) {
+                $category->setCreatedBy(null);
+            }
+        }
 
         return $this;
     }

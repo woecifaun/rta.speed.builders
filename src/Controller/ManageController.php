@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use App\Entity\Speedbuilding\Category;
 use App\Entity\Furniture\Brand;
+use App\Entity\Speedbuilding\Category;
+use App\Entity\User\User;
+use App\Form\Furniture\BrandSelectorType;
 use App\Form\Speedbuilding\CategoryEditType;
 use App\Form\Speedbuilding\CategoryNewType;
-use App\Form\Furniture\BrandSelectorType;
-use App\Repository\Speedbuilding\CategoryRepository;
 use App\Repository\Furniture\ModelRepository;
+use App\Repository\Speedbuilding\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER')]
 class ManageController extends AbstractController
 {
     #[Route('/manage/new-category/select-brand', name: 'manage_category_select_brand')]
@@ -35,8 +39,13 @@ class ManageController extends AbstractController
     }
 
     #[Route('/manage/new-category/brand-{id:brand}', name: 'manage_category_new')]
-    public function manageNewCategory(Brand $brand, Request $request, CategoryRepository $repo, ModelRepository $mRepo): Response
-    {
+    public function manageNewCategory(
+        #[CurrentUser] User $user,
+        Brand $brand,
+        Request $request,
+        CategoryRepository $repo,
+        ModelRepository $mRepo
+    ): Response {
         $category = new Category();
 
         if ($modelId = $request->get('model')) {
@@ -50,6 +59,11 @@ class ManageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $category
+                ->setCreatedBy($user)
+                ->setCreatedAt(new \DatetimeImmutable())
+            ;
+
             $repo->save($category, true);
 
             $this->addFlash(

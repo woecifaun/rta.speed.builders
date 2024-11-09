@@ -3,6 +3,7 @@
 namespace App\Entity\Speedbuilding;
 
 use App\Entity\Furniture\Model;
+use App\Entity\User\User;
 use App\Repository\Speedbuilding\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -39,6 +40,12 @@ class Category
     private ?Model $model = null;
 
     private $converter;
+
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    private ?User $createdBy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
@@ -140,6 +147,30 @@ class Category
             'html_input' => 'strip',
             'allow_unsafe_links' => false,
         ]);
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }
 
