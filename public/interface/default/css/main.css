@@ -2,7 +2,8 @@
 
 :root {
   --translucency-prime: rgba(255, 255, 255, .5);
-  test: lol;
+  --translucency-hover: rgba(255, 255, 255, .7);
+  --transition-time: .3s;
 }
 
 html, body {
@@ -43,6 +44,31 @@ footer {
   }
 }
 
+.category-list {
+  padding: .5em;
+  background-color: var(--translucency-prime);
+  border-radius: var(--bs-border-radius);
+  list-style: none;
+  transition: background-color .3s;
+
+  &:hover {
+    background-color: var(--translucency-hover);
+  }
+}
+
+.category-name {
+  font-style: italic;
+  font-weight: 900;
+  text-decoration: none;
+  letter-spacing: inherit;
+  transition: letter-spacing .3s;
+
+  &:hover {
+    letter-spacing: .05em;
+    color: black;
+  }
+}
+
 span.svg-flag {
   display: inline-block;
   height: 1.5em;
@@ -54,11 +80,13 @@ nav.navbar.bg-light {
   background-color: var(--translucency-prime) !important;
 }
 
-nav .user-buttons {
-  font-size: 2em;
+nav .user-buttons  a {
+  text-decoration: none;
+  color: black;
+  transition: background-color var(--transition-time);
 
-  & a {
-    color: black;
+  &:hover {
+    background-color: var(--translucency-hover);
   }
 }
 
@@ -73,6 +101,10 @@ iframe.youtube-container {
   font-weight: 700;
   text-transform: uppercase;
   color: white;
+}
+
+.speedbuilder-h2 {
+  text-transform: unset;
 }
 
 .page-h3 {

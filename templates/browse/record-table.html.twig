@@ -19,7 +19,7 @@
       {% if record.speedbuilder %}
       <a href="{{ path('browse_speedbuilder', {username: record.speedbuilder.username}) }}">
       <span class="svg-flag">{{ include('svg/flag/' ~ (record.speedbuilder.country|lower ?: 'un') ~ '.svg') }}</span>
-      {{ record.speedbuilder.displayName}}
+      {{ record.speedbuilder.nameToDisplay }}
       </a>
       {% else %}
       <span class="svg-flag">{{ include('svg/flag/un.svg') }}</span>

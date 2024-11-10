@@ -262,4 +262,16 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
         return $this;
     }
+
+    /**
+     * Because display name is unique as well as username
+     * displayName is not auto generated based on username
+     * User has to set it in his/her settings or leave it blank if wanted
+     *
+     * This method handle the what property to return
+     */
+    public function getNameToDisplay(): string
+    {
+        return $this->displayName ?: $this->username;
+    }
 }

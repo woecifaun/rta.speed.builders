@@ -2,26 +2,40 @@
 
 {% extends 'shared/base.html.twig' %}
 
-{% block title %}RTA Speedbuilders - {{ speedbuilder.displayName }} {% endblock %}
+{% block title %}RTA Speedbuilders - {{ speedbuilder.nameToDisplay }} {% endblock %}
 
 {% block payload %}
 {% set config = {display_poster: true} %}
 
-<section>
-  <div class="row">
-    <div class="col mb-5">
-      <h2 class="page-h2 ">{{ speedbuilder.displayName }}</h2>
-      <div><span class="badge bg-secondary">{{ speedbuilder.username }}</span> Joined the community on {{ speedbuilder.registeredOn|date('Y-m-d') }}</div>
-    </div>
+<section class="mb-3">
+  <h2 class="page-h2 speedbuilder-h2">{{ speedbuilder.nameToDisplay }}</h2>
+  <div>
+    <span class="badge bg-secondary">{{ speedbuilder.username }}</span>
+    Joined the community on {{ speedbuilder.registeredOn|date('Y-m-d') }}
   </div>
-
-  <div class="row">
-    <div class="col">
-      <h2 class="page-h2">{{ speedbuilder.records|length }} Record{{ speedbuilder.records|length > 1 ? 's' : '' }}</h2>
-      {{ include('browse/record-table.html.twig', {records: speedbuilder.records, cols: ['category', 'bestRank']}) }}
-    </div>
-  </div>
-
 </section>
+
+<section>
+  <h2 class="page-h2">{{ speedbuilder.records|length }} Record{{ speedbuilder.records|length > 1 ? 's' : '' }}</h2>
+  {% if speedbuilder.records|length %}
+  {{ include('browse/record-table.html.twig', {records: speedbuilder.records, cols: ['category', 'bestRank']}) }}
+  {% else %}
+  <div>No submitted record yet!</div>
+  {% endif %}
+</section>
+
+{% if speedbuilder.categories|length %}
+<section>
+  <h2 class="page-h2">Created Categories</h2>
+  {% for category in speedbuilder.categories %}
+  <div class="row category-list g-0 mb-1">
+    <a href="{{ path('browse_category', {id: category.id}) }}" class="col col-12 col-md-5 category-name">{{ category.name }}</a>
+    <div class="col col-md-3 d-none d-md-block">{{ category.model.name }}</div>
+    <div class="col col-md-3 d-none d-md-block">{{ category.model.brand.name }}</div>
+    <div class="col col-12 col-md-1 text-end">{{ category.records|length }} Records</div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
 
 {% endblock %}
