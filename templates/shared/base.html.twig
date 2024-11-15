@@ -30,9 +30,11 @@
 {% for type,flashes in app.session.flashBag.all %}
   {% set class = attribute(classes, type) %}
   {% for flash in flashes %}
-  <div class="alert alert-{{ class }} alert-dismissible fade show col" role="alert">
-    {{ flash|trans }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div class="col">
+    <div class="alert alert-{{ class }} alert-dismissible fade show" role="alert">
+      {{ flash|trans }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   </div>
   {% endfor %}
 {% endfor %}

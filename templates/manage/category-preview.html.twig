@@ -9,19 +9,50 @@
 
 
 <section>
-  <div class="row">
+  <div class="mb-3">
+    <h2 class="page-h2">
+    {{ version.isDraft ? '<sup class="badge bg-danger fs-6">Draft</sup>' }}
+    {{ version.name }}
+    </h2>
+    <span class="badge bg-secondary">{{ category.model.brand.name }}</span> <span class="badge bg-secondary">{{ category.model.name }}</span>
+  </div>
+
+  <div class="row mb-3">
     <div class="col">
-      <h2 class="page-h2">{{category.name}}</h2>
-      <span class="badge bg-secondary">{{ category.model.brand.name }}</span> <span class="badge bg-secondary">{{ category.model.name }}</span>
+      <details class="category-rules mb-3" open>
+        <summary>Rules</summary>
+        <div class="details-main">
+          {{ version.markdown|markdown_to_html }}
+        </div>
+      </details>
+      <a href="{{ path('manage_category_edit', {id: category.id}) }}" class="btn btn-info btn-rtaswc">Edit</a>
+      {% if not version.identical %}
+      <a href="{{ path('manage_category_publish_from_preview', {id: category.id}) }}" class="btn btn-success btn-rtaswc">Publish</a>
+      {% endif %}
+      {% if version.isDraft %}
+      <a href="{{ path('manage_category_delete_draft', {id: category.id}) }}" class="btn btn-danger btn-rtaswc">Delete Draft</a>
+      {% endif %}
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <div class="category-html mb-3 mt-3" id="category-rules">
-        {{ category.html|raw }}
+      <details class="category-history mb-3">
+      <summary>History</summary>
+      <div class="details-main">
+      {% for version in category.versions %}
+        {% if version.isPublished %}
+        <div class="row">
+          <div class="col col-12 col-md-1 d-none d-lg-block">{{ version.version }}</div>
+          <div class="col col-12 col-md-2">{{ version.createdAt|date('Y-m-d H:i:s') }}</div>
+          <div class="col col-12 col-md-2">{{ version.name }}</div>
+          <div class="col col-12 col-md-5">{{ version.markdown|markdown_to_html }}</div>
+          <a href="{{ path('browse_speedbuilder', {username: version.author.username}) }}"class="col col-12 col-md-2">{{ version.author.nameToDisplay }}</a>
+        </div>
+        {% endif %}
+      {% endfor %}
       </div>
-      <a href="{{ path('manage_category_edit', {'id': category.id}) }}" class="btn btn-info btn-rtaswc">Edit</a>
+      </details>
     </div>
   </div>
 </section>

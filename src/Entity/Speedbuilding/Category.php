@@ -47,10 +47,17 @@ class Category
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
+    /**
+     * @var Collection<int, CategoryVersion>
+     */
+    #[ORM\OneToMany(targetEntity: CategoryVersion::class, mappedBy: 'category', cascade: ['persist'])]
+    private Collection $versions;
+
     public function __construct()
     {
         $this->records = new ArrayCollection();
         $this->setConverter();
+        $this->versions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,6 +176,36 @@ class Category
     public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CategoryVersion>
+     */
+    public function getVersions(): Collection
+    {
+        return $this->versions;
+    }
+
+    public function addVersion(CategoryVersion $version): static
+    {
+        if (!$this->versions->contains($version)) {
+            $this->versions->add($version);
+            $version->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVersion(CategoryVersion $version): static
+    {
+        if ($this->versions->removeElement($version)) {
+            // set the owning side to null (unless already changed)
+            if ($version->getCategory() === $this) {
+                $version->setCategory(null);
+            }
+        }
 
         return $this;
     }

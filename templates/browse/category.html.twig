@@ -7,38 +7,55 @@
 {% block payload %}
 {% set config = {display_poster: true} %}
 
-<section>
-  <div class="row">
-    <div class="col mb-5">
-      <h2 class="page-h2 ">{{ category.name }}</h2>
-    </div>
+<section class="mb-3">
+  <h2 class="page-h2 ">
+    {{ category.name }}
+    {% if app.user.id == category.createdBy.id %}
+    <sup><a href="{{ path('manage_category_edit', {id: category.id})}}" class="badge bg-secondary">Edit</a></sup>
+    {% endif %}
+  </h2>
+  <div>
+    <span class="badge bg-secondary">{{ category.model.brand.name }}</span> <span class="badge bg-secondary">{{ category.model.name }}</span>
+    Created on {{ category.createdAt|date('Y-m-d') }} by
+    <a href="{{ path('browse_speedbuilder', {username: category.createdBy.username }) }}">{{ category.createdBy.nameToDisplay }}</a>
   </div>
+</section>
 
-  <div class="row">
-    <div class="col mb-5">
-      <details class="category-rules">
-        <summary>Rules</summary>
-        <div>
-          {{ category.html|raw }}
-        </div>
-      </details>
+<section>
+  <details class="category-rules mb-5">
+    <summary>Rules</summary>
+    <div class="details-main">
+      {{ category.html|raw }}
     </div>
-  </div>
+  </details>
 
   <div class="row">
     <div class="col col-md-6 mb-3">
-      <h2 class="page-h3 ">{{ records|length }} Record{{ records|length > 1 ? 's' }}</h2>
+      <h3 class="page-h3 ">{{ records|length }} Record{{ records|length > 1 ? 's' }}</h3>
     </div>
     <div class="col-md-6 text-end">
       <a href="{{ path('submit_speedbuilding', {id: category.model.id, category: category.id}) }}" class="btn btn-info btn-rtaswc">Submit a new Speedbuilding Record</a>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col mb-3">
-      {{ include('browse/record-table.html.twig', {records: records, cols: ['speedbuilder', 'bestRank']}) }}
+  {{ include('browse/record-table.html.twig', {records: records, cols: ['speedbuilder', 'bestRank']}) }}
+
+  <details class="category-history mb-3">
+  <summary>History</summary>
+  <div class="details-main">
+  {% for version in category.versions %}
+    {% if version.isPublished %}
+    <div class="row">
+      <div class="col col-12 col-md-1 d-none d-lg-block">{{ version.version }}</div>
+      <div class="col col-12 col-md-2">{{ version.createdAt|date('Y-m-d H:i:s') }}</div>
+      <div class="col col-12 col-md-2">{{ version.name }}</div>
+      <div class="col col-12 col-md-5">{{ version.markdown|markdown_to_html }}</div>
+      <a href="{{ path('browse_speedbuilder', {username: version.author.username}) }}"class="col col-12 col-md-2">{{ version.author.nameToDisplay }}</a>
     </div>
+    {% endif %}
+  {% endfor %}
   </div>
+  </details>
 
 </section>
 

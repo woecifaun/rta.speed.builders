@@ -1,5 +1,6 @@
 <?php
 
+/* Deprecated on 2024-11-11 */
 namespace App\Form\Speedbuilding;
 
 use App\Entity\Speedbuilding\Category;

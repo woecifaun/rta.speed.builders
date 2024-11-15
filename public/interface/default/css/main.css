@@ -4,13 +4,18 @@
   --translucency-prime: rgba(255, 255, 255, .5);
   --translucency-hover: rgba(255, 255, 255, .7);
   --transition-time: .3s;
+
+  --gradient-red: #ee7752;
+  --gradient-raspberry: #e73c7e;
+  --gradient-blue: #23a6d5;
+  --gradient-green: #23d5ab;
 }
 
 html, body {
   min-height: 100vh;
   width: 100vw;
   justify-content: center;
-  background: linear-gradient(0, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(0, var(--gradient-red), var(--gradient-raspberry), var(--gradient-blue), var(--gradient-green));
   font-family: sans-serif;
 }
 
@@ -108,35 +113,34 @@ iframe.youtube-container {
 }
 
 .page-h3 {
-  font-size: 200%;
+  font-size: 170%;
   font-style: italic;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .form-group.record-time .form-control {
-  color: red;
   display:inline;
   width: unset;
 }
 
-.btn.btn-rtaswc {
+/*.btn.btn-rtaswc {
   border-radius: 2px;
   border-top-left-radius: 6px;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 4px;
-  transform: skew(-12deg, 0);
-  margin-left: 0.2em;
-  padding-left: 2.8em;
-}
+}*/
 
-.btn.btn-info.btn-rtaswc {
+.btn.btn-rtaswc {
   border: none;
   border-radius: 0;
-  color: #0dcaf0;
   font-weight: 700;
   text-transform: uppercase;
+  transform: skew(-12deg, 0);
+  margin-left: 0.2em;
+  margin-right: 1.5em;
+  padding-left: 2.8em;
   background: linear-gradient(to right,
     white, white .1em,
     transparent .1em, transparent .5em,
@@ -148,12 +152,24 @@ iframe.youtube-container {
     transparent 1.9em, transparent 2em,
     white 2em);
 
+  &.btn-info {
+    color: var(--gradient-blue);
+  }
+
+  &.btn-success {
+    color: var(--gradient-green);
+  }
+
+  &.btn-danger {
+    color: var(--gradient-raspberry);
+  }
+
   &:hover {
     color: black;
   }
 }
 
-details.category-rules {
+details {
   background-color: var(--translucency-prime);
   padding: .5em;
   border-radius: var(--bs-border-radius);
@@ -166,10 +182,22 @@ details.category-rules {
     text-transform: uppercase;
   }
 
-  & div {
+  &.category-rules div.details-main {
     padding-top: .5em;
     border-top: solid white .5px;
   }
+
+  &.category-history .details-main {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    & .row {
+      background-color: var(--translucency-prime);
+      border-radius: var(--bs-border-radius);
+      margin-bottom: .5em;
+    }
+  }
+
 }
 
 #category-rules {
