@@ -27,7 +27,7 @@
         {% if app.user %}
         <a href="{{ path('user_settings') }}"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
         {% else %}
-        <a href="{{ path('security_register') }}">Sign Up</a>
+        <a href="{{ path('security_signup') }}">Sign Up</a>
         <a href="{{ path('security_login') }}">Log In</a>
         {% endif %}
       </div>

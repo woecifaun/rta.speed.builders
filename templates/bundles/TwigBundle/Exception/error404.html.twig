@@ -1,0 +1,18 @@
+{% set page = 'error-404' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - Page not found !{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section class="container">
+  <div class="row">
+    <div class="col col-md-6 offset-md-3">
+      <h2 class="page-h2 text-center">Oups! Page not found :-(</h2>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -7,7 +7,7 @@
 {% block payload %}
 <section id="user-settings">
    <h2 class="page-h2">My Settings</h2>
-   <div id="setting-list">
+   <div class="setting-list">
      <a href="{{ path('user_display_name') }}"><i class="bi bi-person-circle"></i> Display Name</a>
      <a href="{{ path('user_country') }}"><i class="bi bi-flag-fill"></i> Country</a>
      <a href="{{ path('home') }}"><i class="bi bi-person-fill-check"></i> Username</a>
@@ -16,8 +16,8 @@
 </section>
 
 <section>
-   <div id="setting-list">
+   <div class="setting-list">
      <a href="{{ path('security_logout') }}" class="text-danger"><i class="bi bi-box-arrow-right"></i> Log out</a>
    </div>
-  </section>
+</section>
 {% endblock %}

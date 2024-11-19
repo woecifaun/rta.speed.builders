@@ -8,11 +8,12 @@
 <section>
   <div class="row">
     <div class="col">
-      <h2 class="page-h2">Sign up and join the speedbuilding community!</h2>
+      <h2 class="page-h2 text-center">Sign up and join the speedbuilding community!</h2>
     </div>
   </div>
 
-  <form method="post">
+  <form method="post" class="row">
+    <div class="col col-md-6 offset-md-3">
     <fieldset class="form-row">
       <div class="form-group mt-3">
         <legend>Username</legend>
@@ -29,27 +30,34 @@
         <legend>Email Address</legend>
         {{ form_widget(form.emailAddress, {'attr': {'class': 'form-control'}}) }}
         {{ form_errors(form.emailAddress) }}
-        <div class="form-helper">Needed for validation</div>
+        <ul class="form-helper"><li>Needed for validation</li></ul>
       </div>
 
       <div class="form-group mt-3">
         <legend>Password</legend>
         {{ form_widget(form.password.first, {'attr': {'class': 'password-field'}}) }}
         {{ form_errors(form.password.first) }}
-        <div class="form-helper">Password must be at least 8 characters long and must contain at least one lower case later, one upper case letter, one digit and one special character.</div>
+        <ul class="form-helper">
+          <li>Password must be at least 8 characters long,</li>
+          <li>and must contain at least one lower case later,</li>
+          <li>one upper case letter,</li>
+          <li>one digit</li>
+          <li>and one special character.</li>
+        </ul>
       </div>
 
       <div class="form-group mt-3">
         <legend>Repeat Password</legend>
         {{ form_widget(form.password.second, {'attr': {'class': 'password-field'}}) }}
         {{ form_errors(form.password.second) }}
-        <div class="form-helper">Please, repeat password for double validation.</div>
+        <ul class="form-helper"><li>Please, repeat password for double validation.</li></ul>
       </div>
 
       <div class="form-group mt-3 mb-3">
-          <button type="submit" class="btn btn-info btn-rtaswc">→ next</button>
+          <button type="submit" class="btn btn-info btn-rtaswc">→ Sign Up</button>
       </div>
     </fieldset>
+    </div>
   {{ form_end(form) }}
 </section>
 {% endblock %}

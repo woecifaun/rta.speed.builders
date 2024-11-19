@@ -182,7 +182,7 @@ details {
     text-transform: uppercase;
   }
 
-  &.category-rules div.details-main {
+  .details-main {
     padding-top: .5em;
     border-top: solid white .5px;
   }
@@ -283,9 +283,10 @@ details {
 
 /* SETTINGS */
 
-#setting-list {
+.setting-list {
   border-radius: var(--bs-border-radius);
   background-color: var(--translucency-prime);
+  margin-bottom: 2em;
 
   & a {
     padding: 0.5em;
@@ -337,7 +338,7 @@ details {
 /* MISC */
 
 #faq {
-  & article {
+  & .faq-question {
     background-color: var(--translucency-prime);
     border-radius: var(--bs-border-radius);
     padding: 1em;

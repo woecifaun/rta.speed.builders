@@ -274,4 +274,9 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     {
         return $this->displayName ?: $this->username;
     }
+
+    public function isActive(): bool
+    {
+        return ($this->status == self::STATUS_ACTIVE);
+    }
 }
