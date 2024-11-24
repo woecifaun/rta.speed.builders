@@ -1,0 +1,38 @@
+{% set page = 'user' %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - Send Validation Link{% endblock %}
+
+{% block payload %}
+<section>
+  {% if not form.vars.submitted %}
+  <div class="row">
+    <div class="col col-md-6 offset-md-3">
+      <h2 class="page-h2 mb-3 font-weight-normal text-center">New Validation Link</h2>
+      <p>Your account isn’t confirmed yet.</p>
+      <p> Please fill in your email address to get a new validation link. You will receive a new activation link at the email address you provided.</p>
+      <p>In the event you wouldn't receive the email, check your spam folder. 🙂</p>
+      <form method="post">
+        <legend>Email Address</legend>
+        {{ form_widget(form.emailAddress, {attr: {class: 'mb-3'}}) }}
+        {{ form_errors(form.emailAddress) }}
+
+        <div class="text-center">
+          <button class="btn btn-lg btn-info btn-rtaswc" type="submit">Send Validation Link</button>
+        </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+  {% else %}
+  <div class="row">
+    <div class="col col-md-6 offset-md-3">
+      <h2 class="page-h2 mb-3 font-weight-normal text-center">New Validation Link</h2>
+      <p>A new validation link was sent to your mailbox.</p>
+      <p> Please check your inbox and follow the validation button.</p>
+      <p>In the event you wouldn't receive the email, check your spam folder. 🙂</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

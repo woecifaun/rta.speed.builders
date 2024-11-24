@@ -6,7 +6,9 @@ use App\Entity\User\User;
 use App\Entity\User\ValidationToken as Token;
 use App\Repository\User\UserRepository;
 use App\Repository\User\ValidationTokenRepository as TokenRepository;
+use App\Service\Brevo\Client as BrevoClient;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Registrar
 {
@@ -14,7 +16,9 @@ class Registrar
         private UserRepository $uRepo,
         private UserPasswordHasherInterface $hasher,
         private TokenRepository $tRepo,
-        private $validationTokenExpiry
+        private $validationTokenExpiry,
+        private BrevoClient $brevo,
+        private UrlGeneratorInterface $router,
     ) {}
 
     public function register(User $user)
@@ -29,25 +33,52 @@ class Registrar
         $expiry = (new \DateTimeImmutable())->modify($this->validationTokenExpiry);
         $token = new Token($user, $expiry);
 
+        // flush is made for both with the 'true' argument in the second save call
         $this->tRepo->save($token);
-
-        // flush is made for both token and user thanks to the 'true' argument below
         $this->uRepo->save($user, true);
 
         // sending link to user with Brevo
-
-        return $token->getToken();
+        $link = $this->router->generate(
+            'security_signup_validate',
+            ['token' => $token->getToken()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $this->brevo->sendSignupValidationLink($user->getEmailAddress(), $user->getUsername(), $link);
     }
 
     public function validateUser(Token $token)
     {
         $token->getUser()->setStatus(User::STATUS_ACTIVE);
 
-        $token->setValidatedAt(new \DateTimeImmutable());
+        $token
+            ->setStatus(Token::STATUS_ACTIVATOR)
+            ->setValidatedAt(new \DateTimeImmutable());
 
+        // flush is made for both with the 'true' argument in the second save call
         $this->tRepo->save($token);
-
-        // flush is made for both token and user thanks to the 'true' argument below
         $this->uRepo->save($token->getUser(), true);
+    }
+
+    public function getUserByEmailAddress(string $emailAddress): ?User
+    {
+        return $this->uRepo->getUserByEmailAddress($emailAddress);
+    }
+
+    public function sendNewToken(User $user)
+    {
+        $this->tRepo->depreciateUserTokens($user);
+
+        $expiry = (new \DateTimeImmutable())->modify($this->validationTokenExpiry);
+        $token = new Token($user, $expiry);
+
+        $this->tRepo->save($token, true);
+
+        // sending link to user with Brevo
+        $link = $this->router->generate(
+            'security_signup_validate',
+            ['token' => $token->getToken()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+        $this->brevo->sendSignupValidationLink($user->getEmailAddress(), $user->getUsername(), $link);
     }
 }

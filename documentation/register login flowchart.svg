@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 595.3 841.9">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2, .st3, .st4 {
+        fill: none;
+      }
+
+      .st1 {
+        stroke-width: 1.4px;
+      }
+
+      .st1, .st2, .st3, .st4 {
+        stroke-miterlimit: 10;
+      }
+
+      .st1, .st4 {
+        stroke: #000;
+      }
+
+      .st5, .st6 {
+        isolation: isolate;
+      }
+
+      .st2 {
+        stroke: red;
+      }
+
+      .st3 {
+        stroke: #001fff;
+      }
+
+      .st6 {
+        font-family: Helvetica, Helvetica;
+        font-size: 8px;
+      }
+    </style>
+  </defs>
+  <g class="st5">
+    <text class="st6" transform="translate(87.1 55.9)"><tspan x="0" y="0">/signup</tspan></text>
+  </g>
+  <rect class="st2" x="37.5" y="41.9" width="125" height="25"/>
+  <g class="st5">
+    <text class="st6" transform="translate(53.5 255.9)"><tspan x="0" y="0">/signup/pending-validation</tspan></text>
+  </g>
+  <rect class="st2" x="37.5" y="241.9" width="125" height="25"/>
+  <g class="st5">
+    <text class="st6" transform="translate(205.2 355.9)"><tspan x="0" y="0">Error 404</tspan></text>
+  </g>
+  <rect class="st2" x="187.5" y="341.9" width="68.8" height="25"/>
+  <g class="st5">
+    <text class="st6" transform="translate(162.5 348.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(162.5 398.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(162.5 448.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g>
+    <line class="st1" x1="182.5" y1="354.4" x2="162.5" y2="354.4"/>
+    <polygon points="187.5 354.4 180.4 351.5 182.1 354.4 180.4 357.3 187.5 354.4"/>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(66.2 155.9)"><tspan x="0" y="0">send validation link</tspan></text>
+  </g>
+  <text class="st6" transform="translate(266.6 155.9)"><tspan x="0" y="0">active user</tspan></text>
+  <text class="st6" transform="translate(76.2 355.9)"><tspan x="0" y="0">link not found</tspan></text>
+  <rect class="st3" x="37.5" y="141.9" width="125" height="25" rx="12" ry="12"/>
+  <line class="st0" x1="103.3" y1="251.9" x2="103.3" y2="291.9"/>
+  <g class="st5">
+    <text class="st6" transform="translate(239.3 255.9)"><tspan x="0" y="0">/signup/send-validation-link</tspan></text>
+  </g>
+  <rect class="st2" x="225" y="241.9" width="125" height="25"/>
+  <g class="st5">
+    <text class="st6" transform="translate(277.9 505.9)"><tspan x="0" y="0">/login</tspan></text>
+  </g>
+  <rect class="st2" x="225" y="491.9" width="125" height="25"/>
+  <line class="st0" x1="478.3" y1="201.9" x2="478.3" y2="241.9"/>
+  <g class="st5">
+    <text class="st6" transform="translate(162.5 198.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(293.8 179.4)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(350 148.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(106.2 229.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(106.2 379.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(106.3 429.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(106.3 479.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(106.3 129.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(218.8 148.1)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g>
+    <line class="st1" x1="100" y1="86.9" x2="100" y2="66.9"/>
+    <polygon points="100 91.9 102.9 84.8 100 86.5 97.1 84.8 100 91.9"/>
+  </g>
+  <g>
+    <line class="st1" x1="100" y1="136.9" x2="100" y2="116.9"/>
+    <polygon points="100 141.9 102.9 134.8 100 136.5 97.1 134.8 100 141.9"/>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(481.3 129.4)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(537.5 98.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g>
+    <path class="st1" d="M355,254.4c113.9-1.7,120-63.5,120-137.5"/>
+    <polygon points="350 254.4 357.1 257.2 355.4 254.3 357 251.4 350 254.4"/>
+  </g>
+  <g>
+    <path class="st1" d="M318.9,486.9c7.1-104.6,234.2-210.4,249.8-320,6.2-43.8-6.2-62.5-31.2-62.5"/>
+    <polygon points="318.8 491.9 321.9 485 319 486.5 316.2 484.7 318.8 491.9"/>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(77.3 505.9)"><tspan x="0" y="0">validate user</tspan></text>
+  </g>
+  <rect class="st3" x="37.5" y="491.9" width="125" height="25" rx="12" ry="12"/>
+  <g>
+    <line class="st1" x1="100" y1="486.9" x2="100" y2="466.9"/>
+    <polygon points="100 491.9 102.9 484.8 100 486.5 97.1 484.8 100 491.9"/>
+  </g>
+  <polygon class="st4" points="237.5 141.9 225 154.4 237.5 166.9 337.5 166.9 350 154.4 337.5 141.9 237.5 141.9"/>
+  <text class="st6" transform="translate(79.1 105.9)"><tspan x="0" y="0">email exists</tspan></text>
+  <polygon class="st4" points="50 91.9 37.5 104.4 50 116.9 150 116.9 162.5 104.4 150 91.9 50 91.9"/>
+  <text class="st6" transform="translate(455.7 105.9)"><tspan x="0" y="0">active user</tspan></text>
+  <polygon class="st4" points="425 91.9 412.5 104.4 425 116.9 525 116.9 537.5 104.4 525 91.9 425 91.9"/>
+  <text class="st6" transform="translate(79.1 205.9)"><tspan x="0" y="0">Brevo error</tspan></text>
+  <g>
+    <line class="st1" x1="100" y1="186.9" x2="100" y2="166.9"/>
+    <polygon points="100 191.9 102.9 184.8 100 186.5 97.1 184.8 100 191.9"/>
+  </g>
+  <g>
+    <line class="st1" x1="287.5" y1="221.9" x2="287.5" y2="241.9"/>
+    <polygon points="287.5 216.9 284.6 223.9 287.5 222.3 290.4 223.9 287.5 216.9"/>
+  </g>
+  <g>
+    <line class="st1" x1="287.5" y1="171.9" x2="287.5" y2="191.9"/>
+    <polygon points="287.5 166.9 284.6 174 287.5 172.3 290.4 174 287.5 166.9"/>
+  </g>
+  <g>
+    <path class="st1" d="M167.3,55.7c26.5,14.6,28.1,148.7,57.7,148.7"/>
+    <polygon points="162.5 54.4 168.4 59.2 167.7 55.9 170.1 53.7 162.5 54.4"/>
+  </g>
+  <g>
+    <path class="st1" d="M287.7,486.9c6.5-81,160.2-332.5,62.3-332.5"/>
+    <polygon points="287.5 491.9 290.7 485 287.8 486.5 285 484.7 287.5 491.9"/>
+  </g>
+  <g>
+    <line class="st1" x1="100" y1="236.9" x2="100" y2="216.9"/>
+    <polygon points="100 241.9 102.9 234.8 100 236.5 97.1 234.8 100 241.9"/>
+  </g>
+  <g>
+    <path class="st1" d="M220,253.8c-22.6-5.8-40.1-49.4-57.5-49.4"/>
+    <polygon points="225 254.4 218.5 250.5 219.7 253.6 217.6 256.2 225 254.4"/>
+  </g>
+  <g>
+    <line class="st1" x1="220" y1="504.4" x2="162.5" y2="504.4"/>
+    <polygon points="225 504.4 217.9 501.5 219.6 504.4 217.9 507.3 225 504.4"/>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(242.6 555.9)"><tspan x="0" y="0">/login/forgotten-password</tspan></text>
+  </g>
+  <rect class="st2" x="225" y="541.9" width="125" height="25"/>
+  <g>
+    <line class="st1" x1="287.5" y1="536.9" x2="287.5" y2="516.9"/>
+    <polygon points="287.5 541.9 290.4 534.8 287.5 536.5 284.6 534.8 287.5 541.9"/>
+  </g>
+  <g class="st5">
+    <text class="st6" transform="translate(162.5 98.1)"><tspan x="0" y="0">yes</tspan></text>
+  </g>
+  <g>
+    <line class="st1" x1="407.5" y1="104.4" x2="162.5" y2="104.4"/>
+    <polygon points="412.5 104.4 405.4 101.5 407.1 104.4 405.4 107.3 412.5 104.4"/>
+  </g>
+  <g>
+    <line class="st1" x1="167.5" y1="154.9" x2="225" y2="154.4"/>
+    <polygon points="162.5 154.9 169.6 157.7 167.9 154.9 169.5 152 162.5 154.9"/>
+  </g>
+  <text class="st6" transform="translate(266.6 205.9)"><tspan x="0" y="0">email exists</tspan></text>
+  <g class="st5">
+    <text class="st6" transform="translate(218.8 198.1)"><tspan x="0" y="0">no</tspan></text>
+  </g>
+  <polygon class="st4" points="237.5 191.9 225 204.4 237.5 216.9 337.5 216.9 350 204.4 337.5 191.9 237.5 191.9"/>
+  <g class="st5">
+    <text class="st6" transform="translate(58.6 305.9)"><tspan x="0" y="0">/signup/validate/{token}</tspan></text>
+  </g>
+  <rect class="st2" x="37.5" y="291.9" width="125" height="25"/>
+  <g>
+    <line class="st1" x1="100" y1="286.9" x2="100" y2="266.9"/>
+    <polygon points="100 291.9 102.9 284.8 100 286.5 97.1 284.8 100 291.9"/>
+  </g>
+  <polygon class="st4" points="50 191.9 37.5 204.4 50 216.9 150 216.9 162.5 204.4 150 191.9 50 191.9"/>
+  <g>
+    <line class="st1" x1="100" y1="336.9" x2="100" y2="316.9"/>
+    <polygon points="100 341.9 102.9 334.8 100 336.5 97.1 334.8 100 341.9"/>
+  </g>
+  <polygon class="st4" points="50 341.9 37.5 354.4 50 366.9 150 366.9 162.5 354.4 150 341.9 50 341.9"/>
+  <text class="st6" transform="translate(76.2 405.9)"><tspan x="0" y="0">deprecated link</tspan></text>
+  <g>
+    <line class="st1" x1="100" y1="386.9" x2="100" y2="366.9"/>
+    <polygon points="100 391.9 102.9 384.8 100 386.5 97.1 384.8 100 391.9"/>
+  </g>
+  <polygon class="st4" points="50 391.9 37.5 404.4 50 416.9 150 416.9 162.5 404.4 150 391.9 50 391.9"/>
+  <text class="st6" transform="translate(76.2 455.9)"><tspan x="0" y="0">active user</tspan></text>
+  <g>
+    <line class="st1" x1="100" y1="436.9" x2="100" y2="416.9"/>
+    <polygon points="100 441.9 102.9 434.8 100 436.5 97.1 434.8 100 441.9"/>
+  </g>
+  <polygon class="st4" points="50 441.9 37.5 454.4 50 466.9 150 466.9 162.5 454.4 150 441.9 50 441.9"/>
+  <g>
+    <path class="st1" d="M162.5,404.4c129,0,125.2-36.2,125-132.5"/>
+    <polygon points="287.5 266.9 290.4 273.9 287.5 272.3 284.6 274 287.5 266.9"/>
+  </g>
+  <g>
+    <path class="st1" d="M162.5,454.4c70.9,0,91.5,5.6,93.6,32.5"/>
+    <polygon points="256.3 491.9 253.1 485 256 486.5 258.8 484.7 256.3 491.9"/>
+  </g>
+</svg>

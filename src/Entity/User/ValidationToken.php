@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'user_validation_token')]
 class ValidationToken
 {
+    public const STATUS_ACTIVATOR = 'activator';
+    public const STATUS_DEPRECATED = 'deprecated';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,6 +30,9 @@ class ValidationToken
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $validatedAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status = 'pending';
 
     public function __construct(User $user, \DateTimeImmutable $expiry)
     {
@@ -96,5 +102,17 @@ class ValidationToken
     public function isExpired(): bool
     {
         return ($this->expiry < (new \DateTimeImmutable()));
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

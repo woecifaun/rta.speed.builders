@@ -6,6 +6,7 @@
 parameters:
     # domain name (provided par server config or .env)
     validation_token_expiry: '%env(VALIDATION_TOKEN_EXPIRY)%'
+    brevo_sender: '%env(BREVO_SENDER)%'
 
 services:
     # default configuration for services in *this* file
@@ -28,3 +29,7 @@ services:
     App\Service\User\Registrar:
         arguments:
             $validationTokenExpiry: '%validation_token_expiry%'
+
+    App\Service\Brevo\Client:
+        arguments:
+            $sender: '%brevo_sender%'

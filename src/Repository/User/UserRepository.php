@@ -28,4 +28,14 @@ class UserRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function getUserByEmailAddress(string $emailAddress)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.emailAddress = :emailAddress')
+            ->setParameter('emailAddress', $emailAddress)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
