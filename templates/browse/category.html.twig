@@ -10,7 +10,7 @@
 <section class="mb-3">
   <h2 class="page-h2 ">
     {{ category.name }}
-    {% if app.user.id == category.createdBy.id %}
+    {% if app.user and app.user.id == category.createdBy.id %}
     <sup><a href="{{ path('manage_category_edit', {id: category.id})}}" class="badge bg-secondary">Edit</a></sup>
     {% endif %}
   </h2>

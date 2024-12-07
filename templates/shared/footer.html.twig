@@ -1,16 +1,40 @@
-<footer>
-<div class="container-fluid">
-  <div class="col">
-    <div class="row text-center">
-      <a href="/">rta.speed.builders</a>
+<footer class="mt-5">
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <a href="{{ path('home' )}}">rta.speed.builders</a>
     </div>
   </div>
 
-  <div class="col">
-      <div class="col-md-4">
-          <ul>
-              <li><a href="{{ path('misc_faq') }}">FAQ</a></li>
-          </ul>
+  <div class="row">
+      <div class="col col-6 col-md-3 mt-3">
+          <h3>RTA Speedbuilders</h3>
+          <a href="/" class="footer-link">RTASWC ?</a>
+          <a href="{{ path('misc_faq') }}" class="footer-link">FAQ</a>
+          <a href="/" class="footer-link">Glossary</a>
+          <a href="/" class="footer-link">Stopwatch</a>
+      </div>
+      <div class="col col-6 col-md-3 mt-3">
+          <h3>The RTA Movie</h3>
+          <a href="/" class="footer-link">Support the making of Fast Billy vs. Method Girl</a>
+          <a href="/" class="footer-link">The Story</a>
+          <a href="/" class="footer-link">The Team</a>
+      </div>
+      <div class="col col-6 col-md-3 mt-3">
+          <h3>How can I help?</h3>
+          <a href="{{ path('movie_home') }}" class="footer-link">Support the making of Fast Billy vs. Method Girl</a>
+          <a href="/" class="footer-link">Spread the word</a>
+          <a href="/" class="footer-link">Have some word on the translations</a>
+          <a href="/" class="footer-link">Help improve the website</a>
+      </div>
+      <div class="col col-6 col-md-3 mt-3">
+          <h3>Legal</h3>
+          <a href="/" class="footer-link">About</a>
+          <a href="/" class="footer-link">Terms of Service</a>
+          <a href="/" class="footer-link">Privacy Policy</a>
+          <a href="/" class="footer-link">Contact</a>
+          <a href="/" class="footer-link">EU Legal</a>
+          <a href="/" class="footer-link">Cookie Preferences</a>
       </div>
   </div>
 </div>{# container-fluid #}

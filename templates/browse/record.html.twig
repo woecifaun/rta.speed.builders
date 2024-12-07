@@ -15,12 +15,12 @@
   </div>
 
   <div class="row" id="record-card">
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Time</h3>
       <div class="info time-info">{{ record.formattedTime }}</div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Speedbuilder</h3>
       <div class="info">
       {% if record.speedbuilder %}
@@ -35,32 +35,32 @@
       </div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Rank</h3>
       <div class="info">#{{ record.rank }}</div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Best Rank</h3>
       <div class="info">#{{ record.bestRank }}</div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Category</h3>
       <div class="info"><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Date</h3>
       <div class="info">{{ record.date|date('Y-m-d') }}</div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Model</h3>
       <div class="info"><a href="{{ path('browse_model', {id: record.category.model.id}) }}">{{ record.category.model.name }}</a></div>
     </div>
 
-    <div class="col col-md-6 mb-3 text-center">
+    <div class="col col-12 col-lg-6 mb-3 text-center">
       <h3>Brand</h3>
       <div class="info"><a href="{{ path('browse_brand', {id: record.category.model.brand.id}) }}">{{ record.category.model.brand.name }}</a></div>
     </div>

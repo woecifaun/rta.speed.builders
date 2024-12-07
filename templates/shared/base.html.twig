@@ -21,9 +21,28 @@
 </head>
 <body>
 
-{% include 'shared/menu.html.twig' %}
+<div class="container-fluid d-lg-none text-center sticky-top" id="mobile-movie-support-top-bar">
+  <a href="{{ path('movie_home') }}">🎬 Support the making of the RTA Speedbuilding movie!</a>
+</div>
 
-<main class="container" id="{{ page is defined ? page }}">
+<header>
+
+<div class="container-fluid d-none d-lg-block text-center" id="desktop-movie-support-top-bar">
+  <a href="{{ path('movie_home') }}">🎬 Support the making of the RTA Speedbuilding movie!</a>
+  <a href="{{ path('movie_home') }}" class="btn btn-info">Discover</a>
+</div>
+
+<div class="container d-none d-lg-block text-center mt-3 head-sign">
+<a href="{{ path('home') }}">
+{% include 'svg/rtaswc-logo.svg.twig' with {id: 'rtaswc-logo'}%}
+<h1>Ready-to-Assemble Speedbuilding World Community</h1>
+</a>
+</div>
+
+{% include 'shared/menu.html.twig' %}
+</header>
+
+<main class="container mt-5" id="{{ page is defined ? page }}">
 
 <section id="flash-messages" class="row">
 {% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}
@@ -32,7 +51,7 @@
   {% for flash in flashes %}
   <div class="col">
     <div class="alert alert-{{ class }} alert-dismissible fade show" role="alert">
-      {{ flash|trans }}
+      {{ flash|trans|raw }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </div>

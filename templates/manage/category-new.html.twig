@@ -15,6 +15,16 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col">
+      <div>
+        <div class="alert alert-info">
+          Cannot find the {{ brand.name }}’s model you're looking for ? <a href="{{ path('manage_model_add', {'brand-id': brand.id}) }}">Add a new model to the list!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% if brand.models|length %}
   <form method="post">
     <fieldset class="form-row">

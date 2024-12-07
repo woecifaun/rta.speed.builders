@@ -5,7 +5,28 @@
 {% block title %}RTA Speedbuilders - The unofficial website for tracking your records!{% endblock %}
 
 {% block payload %}
-{% set config = {display_poster: true} %}
+<section class="container mb-5" id="presentation">
+  <div class="row">
+    <div class="col col-12 col-lg-8 mb-3">
+      <div class="rtaswc-block">
+        <h2 class="page-h2">Welcome!</h2>
+        <p>rta.speed.builders a.k.a <abbr title="Ready-to-Assemble Speedbuilding World Community">RTASWC</abbr> is the prime website where the <strong>speedbuilding community</strong> shares their best times in assembling <a href="https://en.wikipedia.org/wiki/Ready-to-assemble_furniture">ready-to-assemble furniture</a>.</p>
+        <p>For some <strong>it's just for fun</strong>, for others it will be for the sake of the competition. In any case, nothing very serious except for <strong>the records that are quite real</strong>.</p>
+        <p>Originally created to document the mockumentary 'Fast Billy vs Method Girl', it will eventually remain over the completion of the movie. If you want to <strong>support the making of this awesome RTA Speedbuilding movie</strong>, <a href="{{ path('movie_home') }}">visit the official page</a>.</p>
+        <p>Be amazed by the overall records, submit your best times too and share the fun!</p>
+      </div>
+    </div>
+    <div class="col col-12 col-lg-4 d-none d-lg-block">
+      <div class="movie-promoter p-0">
+        <a href="{{ path('movie_home') }}">
+        <div>Wanna have fun? Wanna be part of a zany project?</div>
+          <img src="/media/banner-1.jpg" >
+        <div class="text-center">Discover <strong>Fast Billy vs. Method Girl</strong>, the mockumentary about RTA Speedbuilding!</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="container">
   <div class="row">
@@ -14,36 +35,46 @@
     </div>
   </div>
 
-  <table class="table table-rtaswc">
-  <tr>
-    <th>Category</th>
-    <th class="text-end">Time (h:mn:s.ms)</th>
-    <th>Rank</th>
-    <th>Speedbuilder</th>
-    <th>Date</th>
-  </tr>
+  {% set catName = '' %}
   {% for record in records %}
-    <tr>
-      <td><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></td>
-      <td class="text-end tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.formattedTime }}</a></td>
-      <td class="tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">#{{ record.rank }}</a></td>
-      <td>
+    {% if record.category.name != catName %}
+      {% set catName = record.category.name %}
+      <div class="row d-lg-none"><div class="col"><h3 class="page-h3">{{ catName }}</h3></div></div>
+    {% endif %}
+    <div class="row row-rtaswc">
+      <div class="col col-lg-3 d-none d-lg-block"><a href="{{ path('browse_category', {id: record.category.id}) }}">{{ record.category.name }}</a></div>
+      <div class="col col-8 col-lg-3">
         {% if record.speedbuilder %}
         <a href="{{ path('browse_speedbuilder', {username: record.speedbuilder.username}) }}">
         <span class="svg-flag">{{ include('svg/flag/' ~ (record.speedbuilder.country|lower ?: 'un') ~ '.svg') }}</span>
-        {{ record.speedbuilder.nameToDisplay }}
+        <span class="rtaswc-speedbuilder">{{ record.speedbuilder.nameToDisplay }}</span>
         </a>
         {% else %}
         <span class="svg-flag">{{ include('svg/flag/un.svg') }}</span>
         Anonymous
         {% endif %}
-      </td>
-      <td class="tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.date|date('Y-m-d') }}</a></td>
-    </tr>
+      </div>
+      <div class="col col-4 col-lg-3 text-end tabular-nums rtaswc-time"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.formattedTime }}</a></div>
+      <div class="col col-1 col-lg-1 tabular-nums"><a href="{{ path('browse_record', {id: record.id}) }}">#{{ record.rank }}</a></div>
+      <div class="col col-11 col-lg-2 tabular-nums text-lg-end"><a href="{{ path('browse_record', {id: record.id}) }}">{{ record.date|date('Y-m-d') }}</a></div>
+    </div>
   {% else %}
     No record to list yet!
   {% endfor %}
-  </table>
+</section>
+
+<section class="container mt-5">
+  <div class="row">
+    <div class="col col-12 d-lg-none">
+      <div class="movie-promoter p-0">
+        <a href="{{ path('movie_home') }}">
+        <div>Wanna have fun? Wanna be part of a zany project?</div>
+          <img src="/media/banner-1.jpg" >
+        <div class="text-center">Discover <strong>Fast Billy vs. Method Girl</strong>, the mockumentary about RTA Speedbuilding!</div>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}

@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg d-lg-none navbar-light bg-light sticky-top" id="mobile-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{ path('home') }}">RTA Speedbuilders</a>
+    <a class="navbar-brand" href="{{ path('home') }}">
+    {% include 'svg/rtaswc-logo.svg.twig' with {id: 'menu-logo'}%}
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,7 +13,7 @@
         </a>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ is_granted('IS_AUTHENTICATED_FULLY') ?: 'disabled'}}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Manage
+            <i class="bi bi-pencil"></i> Manage
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="{{ path('manage_category_select_brand') }}">New Speedbuilding Category</a></li>
@@ -19,18 +21,47 @@
             <li><a class="dropdown-item" href="{{ path('manage_brand_add') }}">New brand of furniture</a></li>
           </ul>
         </div>
-
       </div>
-    </div>
-    <div class="d-flex">
-      <div class="user-buttons">
-        {% if app.user %}
-        <a href="{{ path('user_settings') }}"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
-        {% else %}
-        <a href="{{ path('security_signup') }}" class="btn btn-info btn-rtaswc">Sign Up</a>
-        <a href="{{ path('security_login') }}" class="btn btn-info">Sign In</a>
-        {% endif %}
+      <div class="d-flex">
+        <div class="user-buttons">
+          {% if app.user %}
+          <a href="{{ path('user_settings') }}"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
+          {% else %}
+          <a href="{{ path('security_signup') }}" class="btn btn-info btn-rtaswc">Sign Up</a>
+          <a href="{{ path('security_login') }}" class="btn btn-info">Sign In</a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
+<div class="container">
+<nav class="navbar navbar-expand-lg d-none d-lg-block navbar-ligh bg-ligh" id="desktop-navbar">
+  <div class="container">
+    <div class="navbar-nav">
+      <a class="nav-link" href="{{ path('submit_select_brand') }}">
+        <i class="bi bi-stopwatch"></i> New Speedbuilding Record
+      </a>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle {{ is_granted('ROLE_USER') ?: 'disabled' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Manage
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="{{ path('manage_category_select_brand') }}">New Speedbuilding Category</a></li>
+          <li><a class="dropdown-item" href="{{ path('manage_model_add') }}">New model of furniture</a></li>
+          <li><a class="dropdown-item" href="{{ path('manage_brand_add') }}">New brand of furniture</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {% if app.user %}
+        <a href="{{ path('user_settings') }}" class="btn btn-outline-success btn-outline-rtaswc speedbuilder-link"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
+        {% else %}
+        <a href="{{ path('security_login') }}" class="btn btn-outline-success btn-outline-rtaswc me-2">Sign In</a>
+        <div><a href="{{ path('security_signup') }}" class="btn btn-info btn-rtaswc">Sign Up</a></div>
+        {% endif %}
+    </div>
+  </div>
+</nav>
+</div>

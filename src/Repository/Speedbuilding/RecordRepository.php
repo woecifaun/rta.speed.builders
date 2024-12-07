@@ -32,6 +32,8 @@ class RecordRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.postDate', 'DESC')
+            ->orderBy('r.category', 'DESC')
+            ->orderBy('r.time', 'ASC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()

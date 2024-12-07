@@ -29,7 +29,7 @@ class FurnitureController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Brand ' . $brand->getName() . ' successfully created.'
+                'Brand <strong>' . $brand->getName() . '</strong> successfully created.'
             );
 
             return $this->redirectToRoute('manage_brand_edit', ["id" => $brand->getId()]);
@@ -54,10 +54,10 @@ class FurnitureController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Brand ' . $brand->getName() . ' successfully edited.'
+                'Brand <strong>' . $brand->getName() . '</strong> successfully edited.'
             );
 
-            return $this->redirectToRoute('home', ["id" => $brand->getId()]);
+            return $this->redirectToRoute('manage_brand_edit', ["id" => $brand->getId()]);
         }
 
         return $this->render('furniture/brand-edit.html.twig', [
