@@ -34,10 +34,10 @@
         {{ form_errors(form.markdown) }}
       </div>
       <div class="form-group mb-3">
-        <button type="submit" formaction="{{ path('manage_category_preview', {'id': category.id}) }}" class="btn btn-info btn-rtaswc">Preview</button>
-        <button type="submit" formaction="{{ path('manage_category_publish_from_edit', {'id': category.id}) }}" class="btn btn-success btn-rtaswc">Publish</button>
+        <button type="submit" formaction="{{ path('manage_category_preview', {'id': category.id}) }}" class="btn btn-info rtaswc-fast">Preview</button>
+        <button type="submit" formaction="{{ path('manage_category_publish_from_edit', {'id': category.id}) }}" class="btn btn-success rtaswc-fast">Publish</button>
         {% if version.isDraft %}
-        <a href="{{ path('manage_category_delete_draft', {id: category.id}) }}" class="btn btn-danger btn-rtaswc">Delete Draft</a>
+        <a href="{{ path('manage_category_delete_draft', {id: category.id}) }}" class="btn btn-danger rtaswc-fast">Delete Draft</a>
         {% endif %}
       </div>
     </fieldset>

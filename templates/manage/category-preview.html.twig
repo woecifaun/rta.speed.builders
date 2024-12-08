@@ -25,12 +25,12 @@
           {{ version.markdown|markdown_to_html }}
         </div>
       </details>
-      <a href="{{ path('manage_category_edit', {id: category.id}) }}" class="btn btn-info btn-rtaswc">Edit</a>
+      <a href="{{ path('manage_category_edit', {id: category.id}) }}" class="btn btn-info rtaswc-fast">Edit</a>
       {% if not version.identical %}
-      <a href="{{ path('manage_category_publish_from_preview', {id: category.id}) }}" class="btn btn-success btn-rtaswc">Publish</a>
+      <a href="{{ path('manage_category_publish_from_preview', {id: category.id}) }}" class="btn btn-success rtaswc-fast">Publish</a>
       {% endif %}
       {% if version.isDraft %}
-      <a href="{{ path('manage_category_delete_draft', {id: category.id}) }}" class="btn btn-danger btn-rtaswc">Delete Draft</a>
+      <a href="{{ path('manage_category_delete_draft', {id: category.id}) }}" class="btn btn-danger rtaswc-fast">Delete Draft</a>
       {% endif %}
     </div>
   </div>
