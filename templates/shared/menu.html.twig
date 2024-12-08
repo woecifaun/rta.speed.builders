@@ -8,7 +8,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="{{ path('submit_select_brand') }}">
+        <a class="nav-link btn btn-info rtaswc-fast" href="{{ path('submit_select_brand') }}">
           <i class="bi bi-stopwatch"></i> New Speedbuilding Record
         </a>
         <div class="nav-item dropdown">
@@ -25,10 +25,10 @@
       <div class="d-flex">
         <div class="user-buttons">
           {% if app.user %}
-          <a href="{{ path('user_settings') }}"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
+          <a href="{{ path('user_settings') }}" class="btn rtaswc-btn-outline respect-lettercase"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
           {% else %}
-          <a href="{{ path('security_signup') }}" class="btn btn-info btn-rtaswc">Sign Up</a>
-          <a href="{{ path('security_login') }}" class="btn btn-info">Sign In</a>
+          <a href="{{ path('security_login') }}" class="btn rtaswc-btn-outline btn-outline-danger">Sign In</a>
+          <a href="{{ path('security_signup') }}" class="btn rtaswc-btn-white btn-info">Sign Up</a>
           {% endif %}
         </div>
       </div>
@@ -40,7 +40,7 @@
 <nav class="navbar navbar-expand-lg d-none d-lg-block navbar-ligh bg-ligh" id="desktop-navbar">
   <div class="container">
     <div class="navbar-nav">
-      <a class="nav-link" href="{{ path('submit_select_brand') }}">
+      <a class="nav-link btn btn-info rtaswc-fast me-3" href="{{ path('submit_select_brand') }}">
         <i class="bi bi-stopwatch"></i> New Speedbuilding Record
       </a>
       <div class="nav-item dropdown">
@@ -56,10 +56,10 @@
     </div>
     <div class="d-flex justify-content-end">
         {% if app.user %}
-        <a href="{{ path('user_settings') }}" class="btn btn-outline-success btn-outline-rtaswc speedbuilder-link"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
+        <a href="{{ path('user_settings') }}" class="btn rtaswc-btn-outline respect-lettercase"><i class="bi-person-circle"></i> {{ app.user.nameToDisplay }}</a>
         {% else %}
-        <a href="{{ path('security_login') }}" class="btn btn-outline-success btn-outline-rtaswc me-2">Sign In</a>
-        <div><a href="{{ path('security_signup') }}" class="btn btn-info btn-rtaswc">Sign Up</a></div>
+        <a href="{{ path('security_login') }}" class="btn rtaswc-btn-outline btn-outline-danger me-2">Sign In</a>
+        <div><a href="{{ path('security_signup') }}" class="btn rtaswc-btn-white btn-info">Sign Up</a></div>
         {% endif %}
     </div>
   </div>

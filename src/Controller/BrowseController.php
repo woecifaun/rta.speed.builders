@@ -17,13 +17,7 @@ class BrowseController extends AbstractController
 {
     public function __construct(private RecordRepository $repo) {}
 
-    #[Route('/', name: 'home_tmp')]
-    public function homeTMP(): Response
-    {
-        return $this->render('splash.html.twig');
-    }
-
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'home')]
     public function home(): Response
     {
         $records = $this->repo->findRecordsPostedMostRecently();

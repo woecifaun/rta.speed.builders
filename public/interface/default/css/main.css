@@ -5,7 +5,7 @@
   --translucency-hover: rgba(255, 255, 255, .7);
   --transition-time: .3s;
 
-  --gradient-red: #ee7752;
+  --gradient-orange: #ee7752;
   --gradient-raspberry: #e73c7e;
   --gradient-blue: #23a6d5;
   --gradient-green: #23d5ab;
@@ -15,13 +15,13 @@ html, body {
   min-height: 100vh;
   width: 100vw;
   justify-content: center;
-  background: linear-gradient(0, var(--gradient-red), var(--gradient-raspberry), var(--gradient-blue), var(--gradient-green));
+  background: linear-gradient(0, var(--gradient-orange), var(--gradient-raspberry), var(--gradient-blue), var(--gradient-green));
   background-attachment: fixed;
   font-family: sans-serif;
 }
 
 main {
-  min-height: 60vh;
+  min-height: 50vh;
 }
 
 footer {
@@ -41,6 +41,10 @@ footer {
 
 .form-helper {
   color: white;
+}
+
+.respect-lettercase {
+  text-transform: none;
 }
 
 .rtaswc-block {
@@ -162,10 +166,6 @@ nav .user-buttons  a {
       margin-right: 0;
 
     }
-
-    & .btn.btn-outline-success.btn-outline-rtaswc.speedbuilder-link {
-      text-transform: none;
-    }
   }
 
   & .nav-link {
@@ -198,6 +198,7 @@ nav .user-buttons  a {
       font-size: 125%;
       display: block;
       padding: .5rem 0;/*var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);*/
+      margin-bottom: .5em;
     }
   }
 }
@@ -231,15 +232,15 @@ iframe.youtube-container {
   width: unset;
 }
 
-.btn.btn-rtaswc {
+.btn.rtaswc-fast {
   border: none;
   border-radius: 0;
   font-weight: 700;
   text-transform: uppercase;
   transform: skew(-12deg, 0);
-  margin-left: 0.2em;
-  margin-right: 1.5em;
-  padding-left: 2.8em;
+  /*margin-left: 0.2em;
+  margin-right: 1.5em;*/
+  padding-left: 2.8em !important;
   background: linear-gradient(to right,
     white, white .1em,
     transparent .1em, transparent .5em,
@@ -252,30 +253,124 @@ iframe.youtube-container {
     white 2em);
 
   &.btn-info {
+    color: var(--gradient-blue) !important;
+
+    &:hover {
+      color: black !important;
+    }
+  }
+
+  &.btn-success {
+    color: var(--gradient-green) !important;
+
+    &:hover {
+      color: black !important;
+    }
+  }
+
+  &.btn-danger {
+    color: var(--gradient-raspberry) !important;
+
+    &:hover {
+      color: black !important;
+    }
+  }
+
+
+  &.btn-warning {
+    color: var(--gradient-orange) !important;
+
+    &:hover {
+      color: black !important;
+    }
+  }
+}
+
+.btn.rtaswc-btn {
+  color: white;
+  background-color: transparent;
+
+  &.btn-danger {
+    background-color: var(--gradient-raspberry);
+  }
+
+  &.btn-info {
+    background-color: var(--gradient-blue);
+  }
+
+  &.btn-success {
+    background-color: var(--gradient-green);
+  }
+
+  &.btn-warning {
+    background-color: var(--gradient-orange);
+  }
+}
+
+.btn.rtaswc-btn-white {
+  border-color: white;
+  background-color: white;
+
+  &.btn-danger {
+    color: var(--gradient-raspberry);
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  &.btn-info {
     color: var(--gradient-blue);
+
+    &:hover {
+      color: black;
+    }
   }
 
   &.btn-success {
     color: var(--gradient-green);
+
+    &:hover {
+      color: black;
+    }
   }
 
-  &.btn-danger {
-    color: var(--gradient-raspberry);
-  }
+  &.btn-warning {
+    color: var(--gradient-orange);
 
-  &:hover {
-    color: black;
+    &:hover {
+      color: black;
+    }
   }
 }
 
-.btn.btn-outline-success.btn-outline-rtaswc {
+.btn.rtaswc-btn-outline {
   border-color: white;
   color: white;
   background-color: transparent;
 
   &:hover {
+    color: black;
+  }
+
+  &.btn-outline-danger:hover {
     background-color: white;
     color: var(--gradient-raspberry);
+  }
+
+  &.btn-outline-info:hover {
+    background-color: white;
+    color: var(--gradient-blue);
+  }
+
+  &.btn-outline-success:hover {
+    background-color: white;
+    color: var(--gradient-green);
+  }
+
+  &.btn-outline-warning:hover {
+    background-color: white;
+    color: var(--gradient-orange);
   }
 }
 
