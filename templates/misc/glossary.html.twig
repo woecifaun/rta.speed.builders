@@ -1,0 +1,37 @@
+{% set navbar = {page: 'assembly', tab: null} %}
+
+{% extends 'shared/base.html.twig' %}
+
+{% block title %}RTA Speedbuilders - Glossary }}{% endblock %}
+
+{% block payload %}
+{% set config = {display_poster: true} %}
+
+<section class="container" id="glossary">
+  <div class="row">
+    <div class="col">
+      <h2 class="page-h2">Glossary</h2>
+    </div>
+  </div>
+
+  <div id="glossary-list">
+    <article id="glossary-category">
+      <h3 class="page-h3">Category</h3>
+      <p>Speedbuilding categories are created and edited by the users of the website.</p>
+      <p>A category matches a brand and a model of furniture. For the same model of furniture, many different categories are possible: depending on the autorized tools, the method of measuring time or even how the piece of furniture must be built based on the available options…</p>
+    </article>
+
+    <article id="glossary-rtaswc">
+      <h3 class="page-h3">RTASWC</h3>
+      <p>RTASWC stands for <strong>Ready-to-Assemble Speedbuilding World Community</strong> on this very website.</p>
+      <p>The brand logo was designed to be featured in the RTA Speedbuilding mockumentary as the official name of the (fake) biannual competition gathering the top world’s athlets building bookshelves, kitchen units… As a (still fake) major event, it needed a strong visual identity to print viewers retina and stay in people’s minds. In the movie's lore, RTASWC stands for <strong>Ready-to-Assemble Speedbuilding World Cup</strong>.</p>
+    </article>
+
+    <article id="glossary-speedbuilder">
+      <h3 class="page-h3">Speedbuilder</h3>
+      <p>Anyone trying to beat the stopwatch while assembling a piece of furniture is a speedbuilder. Submitting its time on <a href="/">rta.speed.builders</a> makes her/him officially part of the community.</p>
+    </article>
+  </div>
+</section>
+
+{% endblock %}

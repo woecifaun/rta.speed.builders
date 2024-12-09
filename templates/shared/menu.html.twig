@@ -11,8 +11,11 @@
         <a class="nav-link btn btn-info rtaswc-fast" href="{{ path('submit_select_brand') }}">
           <i class="bi bi-stopwatch"></i> New Speedbuilding Record
         </a>
+        <a class="nav-link" href="{{ path('movie_home') }}">
+          <i class="bi bi-camera-reels"></i> Movie
+        </a>
         <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ is_granted('IS_AUTHENTICATED_FULLY') ?: 'disabled'}}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {{ is_granted('ROLE_USER') ?: 'disabled'}}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-pencil"></i> Manage
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -42,6 +45,9 @@
     <div class="navbar-nav">
       <a class="nav-link btn btn-info rtaswc-fast me-3" href="{{ path('submit_select_brand') }}">
         <i class="bi bi-stopwatch"></i> New Speedbuilding Record
+      </a>
+      <a class="nav-link me-3" href="{{ path('movie_home') }}">
+        <i class="bi bi-camera-reels"></i> Movie
       </a>
       <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle {{ is_granted('ROLE_USER') ?: 'disabled' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

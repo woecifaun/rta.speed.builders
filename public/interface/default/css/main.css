@@ -573,6 +573,16 @@ footer {
   }
 }
 
+#glossary-list {
+  background-color: var(--translucency-prime);
+  border-radius: var(--bs-border-radius);
+  padding: 1em;
+
+  & article {
+    margin-bottom: .5em;
+  }
+}
+
 /* MOVIE */
 #desktop-movie-support-top-bar {
   background-color: white;

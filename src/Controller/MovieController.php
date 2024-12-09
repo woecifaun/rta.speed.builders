@@ -11,10 +11,6 @@ class MovieController extends AbstractController
     #[Route('/movie', name: 'movie_home')]
     public function home(): Response
     {
-        $records = $this->repo->findRecordsPostedMostRecently();
-
-        return $this->render('browse/home.html.twig',[
-            'records' => $records,
-        ]);
+        return $this->render('movie/home.html.twig');
     }
 }
