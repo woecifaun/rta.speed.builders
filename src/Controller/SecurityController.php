@@ -70,6 +70,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_signup_pending');
         }
 
+        return $this->render('security/signup.html.twig', ['form' => $form]);
     }
 
     /**
