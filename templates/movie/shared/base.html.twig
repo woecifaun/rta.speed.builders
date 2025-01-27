@@ -21,11 +21,17 @@
 </head>
 <body>
 
+<div class="fullscreen-video-container">
+  <video autoplay loop muted>
+    <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+  </video>
+</div>
+
 <header>
 {% include 'movie/shared/menu.html.twig' %}
 </header>
 
-<main class="container mt-5" id="{{ page is defined ? page }}">
+<main class="" id="{{ page is defined ? page }}">
 
 
 {% block payload %}{% endblock %}
