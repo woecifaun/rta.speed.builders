@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <a href="{{ path('home' )}}">rta.speed.builders</a>
+      <a href="{{ path('home' )}}" class="home-link"><i class="bi bi-house-fill"></i> rta.speed.builders</a>
     </div>
   </div>
 
@@ -16,8 +16,8 @@
       </div>
       <div class="col col-6 col-md-3 mt-3">
           <h3>The RTA Movie</h3>
-          <a href="/" class="footer-link">Support the making of Fast Billy vs. Method Girl</a>
-          <a href="/" class="footer-link">The Story</a>
+          <a href="{{ path('movie_home') }}" class="footer-link">Support the making of Fast Billy vs. Method Girl</a>
+          <a href="{{ path('movie_home') }}#story" class="footer-link">The Story</a>
           <a href="/" class="footer-link">The Team</a>
       </div>
       <div class="col col-6 col-md-3 mt-3">

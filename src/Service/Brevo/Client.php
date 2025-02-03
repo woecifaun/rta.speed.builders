@@ -6,7 +6,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 /**
- * Instance will be in charge of communicating with Brevo API
+ * Instance will be in charge of sending email straight with Brevo
  */
 class Client
 {

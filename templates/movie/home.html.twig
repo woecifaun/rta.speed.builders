@@ -1,19 +1,156 @@
-{% set page = 'home' %}
+{% set tracking = app.request.cookies.get('cookie_policy')
+%}<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+  <title>Fast Billy vs Method Girl - the RTA Speedbuilding Movie</title>
+  <meta charset="utf-8" />
+  <meta name="title" content="Fast Billy vs Method Girl - the RTA Speedbuilding Movie" />
+  <meta name="description" content="Follow the journey of Fast Billy, the new ready-to-assemble speedbuilding star, up to the grand finale against Method Girl, the multi-time pro builder champion!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% extends 'movie/shared/base.html.twig' %}
+  {% include 'shared/icon.html.twig' %}
 
-{% block title %}Fast Billy vs Method Girl - RTA Speedbuilding Movie{% endblock %}
+  {% block meta_og %}{% endblock %}
 
-{% block payload %}
-<section class="container-fluid mb-5" id="presentation">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/interface/movie/css/main.css">
 
-  {# <div class="row text-center">
-    <div class="col col-12">
-      <div class="rtaswc-block">
-        <h1 class="page-h1">Fast Billy vs. Method Girl</h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+</head>
+<body>
+
+<main>
+
+<section id="splash-screen" class="pb-5">
+  <div class="fullscreen-video-container">
+    <video autoplay loop muted>
+      <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div id="flash-messages" class="text-center">
+  {% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}
+  {% for type,flashes in app.session.flashBag.all %}
+    {% set class = attribute(classes, type) %}
+    {% for flash in flashes %}
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ flash|trans|raw }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endfor %}
+  </div>
+
+  <div class="container">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew" id="logo">
+        <div>
+          <img src="/media/fast-billy-vs-method-girl-logo.png" class="w100">
+        </div>
+        <div class="mt-5 text-center">
+          <p>
+          Follow the journey of<br/><strong class="fast-billy">Fast Billy, the new ready-to-assemble speedbuilding star</strong>,<br/>up to the grand finale against<br/><strong class="method-girl">Method Girl, pro builder and multi-time champion!</strong>
+          </p>
+          <p>
+          A fun short mockumentary paying tribute to speedrunning, speedcubing, speed brick building…
+          </p>
+        </div>
+      </div>
+      <div class="col col-12 col-md-6 mt-20 skew">
+        <h3>Support the project!</h3>
+        <p>Sign up for the newsletter to enjoy exclusives about the making of Fast Billy vs Method Girl and the growing community of the RTA speedbuilding!</p>
+        <form class="mt-5" method="post">
+          <div>
+            {{ form_widget(form.name, {attr: {placeholder: 'Name'}}) }}
+            {{ form_errors(form.name) }}
+          </div>
+          <div class="mt-1">
+            {{ form_widget(form.email, {attr: {placeholder: 'Email Address'}}) }}
+            {{ form_errors(form.email) }}
+          </div>
+          <div class="mt-1 text-end">
+            <button type="submit" class="btn btn-info btn-rtaswc">Sign up!</button>
+          </div>
+        {{ form_end(form) }}
+        <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p>
       </div>
     </div>
-  </div> #}
+  </div>
 </section>
 
-{% endblock %}
+<section id="story">
+  <div class="container pt-5 pb-5">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew text-center">
+        <blockquote class="spectrum">"Let’s Get<br/>Ready-To-Assemble!"</blockquote>
+        <p><i><strong class="fast-billy">Arturo</strong>, Fast Billy’s BFF</i></p>
+      </div>
+
+      <div class="col col-12 col-md-6 skew mt-10">
+        <h3>The Story</h3>
+        <p>Follow  <strong class="fast-billy">Fast Billy</strong>, a newcomer in the professional world of the ready-to-assemble speedbuilding, practicing and progressing through the different stages of the 2024 edition of the Ready-To-Assemble Speedbuilding World Cup.</p>
+        <p>Discover how <strong class="method-girl">Method Girl</strong> worked hard to be the first woman to win 3 titles and mark the speedbuilding history.</p>
+        <p>Find out how the two competitors advanced to the RTASWC final and relive the legendary outcome!</p>
+        <p><strong class="spectrum">A story about dedication, friendship and awareness!</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tribute">
+  <div class="container pt-5 pb-5">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew text-center">
+        <blockquote class="spectrum">"A tribute to speedrunning,<br/>speed cubing…<br/>and IKEA® hacking!"</blockquote>
+        <p>Wait, what?! 😆</p>
+      </div>
+
+      <div class="col col-12 col-md-6 skew mt-10">
+        <h3>Mockumentary as a genre</h3>
+        <p>Like <cite>The Office</cite>, <cite>What We Do In The Shadows</cite>, <cite>This Is Spinal Tap</cite> or <cite>Borat</cite>, <strong class="spectrum">Fast Billy vs. Method Girl will use the codes of real documentaries to tell a fully made up story</strong>.</p>
+        <p>What for?</p>
+        <ul>
+          <li>For fun, </li>
+          <li>as a tribute to speedrunning and other emerging speed competitions,</li>
+          <li> as a nod to IKEA hacking and skilled people…</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container pt-5 pb-5">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew">
+        <h3>The team</h3>
+        <div>
+          <h4><strong class="method-girl">Julien Baron</strong> writer/director</h4>
+          <p></p>
+        </div>
+        <div>
+          <h4><strong class="fast-billy">Éric Richer</strong> writer</h4>
+          <p></p>
+        </div>
+      </div>
+      <div class="col col-12 col-md-6 skew text-center mt-10">
+        <blockquote class="spectrum">"Nothing better than<br/>working with friends,<br/>specially if<br/>they are still your friends<br/>when the job is done!</blockquote>
+        <p>The lonely guy</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+
+{{ include('shared/footer.html.twig') }}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

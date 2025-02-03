@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^3.2",
+        "getbrevo/brevo-php": "^2.0",
         "league/commonmark": "^2.5",
         "symfony/brevo-mailer": "7.1.*",
         "symfony/console": "7.1.*",
