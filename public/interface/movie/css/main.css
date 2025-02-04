@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,600&display=swap');
 
 :root {
   --gradient-orange: #ee7752;
@@ -61,8 +61,10 @@ section {
   }
 
   & blockquote {
-    font-family: "Caveat Brush", serif;
-    font-size: 250%;
+    font-size: 200%;
+    font-family: "Kanit", serif;
+    font-weight: 600;
+    font-style: italic;
     display: inline;
   }
 }
