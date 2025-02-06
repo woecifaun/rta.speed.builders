@@ -46,12 +46,22 @@ strong {
   background-clip: text;
 }
 
+
+
 section {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   min-height: 75vh;
+
+  & h3 {
+    text-transform: uppercase;
+  }
+
+  & h4 {
+    margin-top: 1em;
+  }
 
   & .col {
     background: rgba(0, 0, 0, .7);
@@ -117,6 +127,10 @@ section {
 
 #team {
   background-image: url("/media/screws.jpg");
+}
+
+#support {
+  background-image: url("/media/reporter.jpg");
 }
 
 

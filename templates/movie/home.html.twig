@@ -23,6 +23,22 @@
 
 <main>
 
+{% set newsletterForm %}
+  <form class="mt-5" method="post" id="newsletter">
+    <div>
+      {{ form_widget(form.name, {attr: {placeholder: 'Name'}}) }}
+      {{ form_errors(form.name) }}
+    </div>
+    <div class="mt-1">
+      {{ form_widget(form.email, {attr: {placeholder: 'Email Address'}}) }}
+      {{ form_errors(form.email) }}
+    </div>
+    <div class="mt-1 text-end">
+      <button type="submit" class="btn btn-info btn-rtaswc">Sign up!</button>
+    </div>
+  {{ form_end(form) }}
+{% endset %}
+
 <section id="splash-screen" class="pb-5">
   <div class="fullscreen-video-container">
     <video autoplay loop muted>
@@ -61,19 +77,7 @@
       <div class="col col-12 col-md-6 mt-20 skew">
         <h3>Support the project!</h3>
         <p>Sign up for the newsletter to enjoy exclusives about the making of Fast Billy vs Method Girl and the growing community of the RTA speedbuilding!</p>
-        <form class="mt-5" method="post">
-          <div>
-            {{ form_widget(form.name, {attr: {placeholder: 'Name'}}) }}
-            {{ form_errors(form.name) }}
-          </div>
-          <div class="mt-1">
-            {{ form_widget(form.email, {attr: {placeholder: 'Email Address'}}) }}
-            {{ form_errors(form.email) }}
-          </div>
-          <div class="mt-1 text-end">
-            <button type="submit" class="btn btn-info btn-rtaswc">Sign up!</button>
-          </div>
-        {{ form_end(form) }}
+        {{ newsletterForm }}
         <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p>
       </div>
     </div>
@@ -127,15 +131,19 @@
       <div class="col col-12 col-md-6 skew">
         <h3>The team</h3>
         <div>
-          <h4><strong class="method-girl">Julien Baron</strong> writer/director</h4>
-          <p></p>
+          <h4><strong class="method-girl">Julien Baron</strong> director/writer</h4>
+          <p>Former projectionist, Maker of music videos and short movies, Julien is also co-director of the first immersive exhibitions Imagine Van Gogh or Imagine Picasso, cumulating more than 2 millions visitors. Handyman and DIY enthusiast on one hand and speedrunning and speed cubing fan on the other hand, You can easily get where the idea of the movie came from.</p>
+
         </div>
         <div>
           <h4><strong class="fast-billy">Éric Richer</strong> writer</h4>
-          <p></p>
+          <p>Former projectionist, Eric Richer grew up with 7 dogs, read a lot, studied cinema, made some experimental Shorts. Staying in Japan, he made a documentary about the Kamo River in Kyoto. He alsow wrote two novels, La Rouille (The Rust, 2018) and Tiger (2021) that were published by L’Ogre Editions. He is currently working hard on the next ones.</p>
+        </div>
+        <div>
+          <p>More to come along as the production advances…</p>
         </div>
       </div>
-      <div class="col col-12 col-md-6 skew text-center mt-10">
+      <div class="col col-12 col-md-6 skew text-center mt-20">
         <blockquote class="spectrum">"Nothing better than<br/>working with friends,<br/>even more if<br/>you’re still friends<br/>when the job is done!</blockquote>
         <p>The Lonely Guy</p>
       </div>
@@ -143,7 +151,30 @@
   </div>
 </section>
 
-
+<section id="support">
+  <div class="container pt-5 pb-5">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew">
+        <h3>Wanna help?</h3>
+        <p>Sign up for the newsletter and stay up to date with the making of Fast Billy vs Method Girl. You’ll get news about preproduction, cast, crew, shooting, festivals…</p>
+        {{ newsletterForm }}
+        <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p>
+      </div>
+      <div class="col col-12 col-md-6 skew mt-20">
+        <h3>Help us spread the word!</h3>
+        <p>Please, follow us online and share it to your friend:</p>
+        <ul>
+          <li>Making of the movie on Instagram:<br/>
+            <a href="https://instagram.com/rtaswc_movie" class="spectrum"><i class="bi bi-instagram"></i> @rtaswc_movie</a>
+          </li>
+          <li>Julien’s speedbuilding account with real records:<br/>
+            <a href="https://instagram.com/smartassembler" class="spectrum"><i class="bi bi-instagram"></i> @smartassembler</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 
