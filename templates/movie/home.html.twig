@@ -42,7 +42,7 @@
 <section id="splash-screen" class="pb-5">
   <div class="fullscreen-video-container">
     <div>
-      <video autoplay loop muted>
+      <video autoplay loop muted playsinline>
         <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
       </video>
     </div>
@@ -61,49 +61,15 @@
   {% endfor %}
   </div>
 
-
-<div id="logo-space">
-  <div class="col col-12 col-sm-10 col-md-8 col-lg-6 skew text-center">
-    {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
-    <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
+  <div id="logo-space">
+    <div class="col col-12 col-sm-10 col-md-8 col-lg-6 skew text-center">
+      {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
+      <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
+    </div>
   </div>
-</div>
 </section>
 
-{# <section id="splash-screen" class="pb-5">
-  <div class="fullscreen-video-container">
-    <div>
-      <video autoplay loop muted>
-        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-
-  <div id="flash-messages" class="text-center">
-  {% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}
-  {% for type,flashes in app.session.flashBag.all %}
-    {% set class = attribute(classes, type) %}
-    {% for flash in flashes %}
-      <div class="alert alert-info alert-dismissible fade show" role="alert">
-        {{ flash|trans|raw }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  {% endfor %}
-  </div>
-
-  <div class="container">
-    <div class="row flex-start">
-      <div class="col col-12 col-md-6 skew text-center" id="logo">
-        <div>
-          {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
-        </div>
-        <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
-    </div>
-  </div>
-</section> #}
-
-<section id="presentation" class="pb-5 pt-5">
+<section id="presentation">
   <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew text-center" id="logo">
@@ -122,7 +88,7 @@
 </section>
 
 <section id="story">
-  <div class="container pt-5 pb-5">
+  <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew text-center">
         <blockquote class="spectrum">"Let’s Get<br/>Ready-To-Assemble!"</blockquote>
@@ -141,7 +107,7 @@
 </section>
 
 <section id="tribute">
-  <div class="container pt-5 pb-5">
+  <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew text-center">
         <blockquote class="spectrum">"A tribute to speedrunning,<br/>speed cubing…<br/>and IKEA® hacking!"</blockquote>
@@ -163,7 +129,7 @@
 </section>
 
 <section id="team">
-  <div class="container pt-5 pb-5">
+  <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew">
         <h3>The team</h3>
@@ -189,7 +155,7 @@
 </section>
 
 <section id="support">
-  <div class="container pt-5 pb-5">
+  <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew">
         <h3>Wanna help?</h3>

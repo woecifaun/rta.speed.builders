@@ -23,7 +23,7 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                // $client->newContact($form->getData(), APIClient::MOVIE_NEWSLETTER_SUBSCRIBER);
+                $client->newContact($form->getData(), APIClient::MOVIE_NEWSLETTER_SUBSCRIBER);
             } catch (BrevoException $e) {
 
             }

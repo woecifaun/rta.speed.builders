@@ -76,10 +76,21 @@ section {
     margin-top: 1em;
   }
 
+  /* .col is handling background for larger widths */
   & .row {
     @media only screen and (max-width: 767px) {
-      background-color: rgba(0, 0, 0, .7);
+      background-color: rgba(0, 0, 0, .5);
       backdrop-filter: blur(10px);
+    }
+  }
+
+  & .container {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @media only screen and (min-width: : 576px) {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
     }
   }
 
@@ -89,6 +100,7 @@ section {
     padding: 2em;
     font-size: larger;
 
+    /* .row is handling background for narrow width */
     @media only screen and (min-width: 768px) {
       background-color: rgba(0, 0, 0, .7);
       backdrop-filter: blur(10px);
@@ -118,8 +130,11 @@ section {
   & div.alert {
     margin: 0;
     display: inline-block;
-    transform: skew(-6deg);
     border-radius: 0;
+
+    @media only screen and (min-width: 768px) {
+      transform: skew(-6deg);
+    }
   }
 }
 
