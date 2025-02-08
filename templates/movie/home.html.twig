@@ -41,9 +41,42 @@
 
 <section id="splash-screen" class="pb-5">
   <div class="fullscreen-video-container">
-    <video autoplay loop muted>
-      <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
-    </video>
+    <div>
+      <video autoplay loop muted>
+        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div id="flash-messages" class="text-center">
+  {% set classes = {notice: 'info', success: 'success', error: 'danger'}  %}
+  {% for type,flashes in app.session.flashBag.all %}
+    {% set class = attribute(classes, type) %}
+    {% for flash in flashes %}
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ flash|trans|raw }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endfor %}
+  </div>
+
+
+<div id="logo-space">
+  <div class="col col-12 col-sm-10 col-md-8 col-lg-6 skew text-center">
+    {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
+    <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
+  </div>
+</div>
+</section>
+
+{# <section id="splash-screen" class="pb-5">
+  <div class="fullscreen-video-container">
+    <div>
+      <video autoplay loop muted>
+        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
 
   <div id="flash-messages" class="text-center">
@@ -61,20 +94,24 @@
 
   <div class="container">
     <div class="row flex-start">
-      <div class="col col-12 col-md-6 skew" id="logo">
+      <div class="col col-12 col-md-6 skew text-center" id="logo">
         <div>
           {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
         </div>
-        <div class="mt-5 text-center">
-          <p>
-          Follow the journey of<br/><strong class="fast-billy">Fast Billy, the new ready-to-assemble speedbuilding star</strong>,<br/>up to the grand finale against<br/><strong class="method-girl">Method Girl, pro builder and multi-time champion!</strong>
-          </p>
-          <p>
-          A fun short mockumentary paying tribute to speedrunning, speedcubing, speed brick building…
-          </p>
-        </div>
+        <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
+    </div>
+  </div>
+</section> #}
+
+<section id="presentation" class="pb-5 pt-5">
+  <div class="container">
+    <div class="row flex-start">
+      <div class="col col-12 col-md-6 skew text-center" id="logo">
+          <h1><strong class="fast-billy">FAST&nbsp;BILLY</strong> vs <strong class="method-girl">METHOD GIRL</strong></h1>
+          <p>Follow the journey of<br/><strong class="fast-billy">Fast Billy, the new ready-to-assemble speedbuilding star</strong>,<br/>up to the grand finale against<br/><strong class="method-girl">Method Girl, pro builder and multi-time champion!</strong></p>
+          <p>A fun short mockumentary paying tribute to speedrunning, speedcubing, speed brick building…</p>
       </div>
-      <div class="col col-12 col-md-6 mt-20 skew">
+      <div class="col col-12 col-md-6 mt-10 skew">
         <h3>Support the project!</h3>
         <p>Sign up for the newsletter to enjoy exclusives about the making of Fast Billy vs Method Girl and the growing community of the RTA speedbuilding!</p>
         {{ newsletterForm }}
@@ -132,7 +169,7 @@
         <h3>The team</h3>
         <div>
           <h4><strong class="method-girl">Julien Baron</strong> director/writer</h4>
-          <p>Former projectionist, Maker of music videos and short movies, Julien is also co-director of the first immersive exhibitions Imagine Van Gogh or Imagine Picasso, cumulating more than 2 millions visitors. Handyman and DIY enthusiast on one hand and speedrunning and speed cubing fan on the other hand, You can easily get where the idea of the movie came from.</p>
+          <p>Former projectionist, Maker of music videos and short movies, Julien is also co-director of the first immersive exhibitions Imagine Van Gogh or Imagine Picasso, cumulating more than 2 millions visitors. Handyman and DIY enthusiast on one hand, speedrunning and speed cubing fan on the other hand, You can easily get where the idea of the movie came from.</p>
 
         </div>
         <div>
@@ -143,7 +180,7 @@
           <p>More to come along as the production advances…</p>
         </div>
       </div>
-      <div class="col col-12 col-md-6 skew text-center mt-20">
+      <div class="col col-12 col-md-6 skew text-center mt-20 d-none d-md-block">
         <blockquote class="spectrum">"Nothing better than<br/>working with friends,<br/>even more if<br/>you’re still friends<br/>when the job is done!</blockquote>
         <p>The Lonely Guy</p>
       </div>
