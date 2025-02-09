@@ -40,7 +40,7 @@
 
 
 .skew {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 576px) {
     transform: skew(-5deg);
   }
 }
@@ -88,7 +88,7 @@ section {
     padding-top: 0;
     padding-bottom: 0;
 
-    @media only screen and (min-width: : 576px) {
+    @media only screen and (min-width: 576px) {
       padding-top: 3rem !important;
       padding-bottom: 3rem !important;
     }
@@ -132,7 +132,7 @@ section {
     display: inline-block;
     border-radius: 0;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 576px) {
       transform: skew(-6deg);
     }
   }
