@@ -23,30 +23,22 @@
 
 <main>
 
+{# {% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %} #}
 {% set newsletterForm %}
-  <form class="mt-5" method="post" id="newsletter">
+  <form method="post" class="newsletter-form">
     <div>
-      {{ form_widget(form.name, {attr: {placeholder: 'Name'}}) }}
+      {{ form_widget(form.name, {attr: {placeholder: 'First Name'}}) }}
       {{ form_errors(form.name) }}
-    </div>
-    <div class="mt-1">
       {{ form_widget(form.email, {attr: {placeholder: 'Email Address'}}) }}
       {{ form_errors(form.email) }}
     </div>
     <div class="mt-1 text-end">
-      <button type="submit" class="btn btn-info btn-rtaswc">Sign up!</button>
+      <button type="submit" class="btn btn-info rtaswc-btn-fast">Sign me up!</button>
     </div>
   {{ form_end(form) }}
 {% endset %}
 
 <section id="splash-screen" class="pb-5">
-  <div class="fullscreen-video-container">
-    <div>
-      <video autoplay loop muted playsinline>
-        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
 
   {% if app.session.flashBag.peekAll|length %}
   <div id="flash-messages" class="text-center">
@@ -69,22 +61,33 @@
       <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
     </div>
   </div>
+
+  <div class="fullscreen-video-container">
+    {# <div> #}
+      <video autoplay loop muted playsinline>
+        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+      </video>
+    {# </div> #}
+  </div>
 </section>
 
-<section id="presentation">
+<section class="newsletter-section">
   <div class="container">
     <div class="row flex-start">
-      <div class="col col-12 col-md-6 skew text-center" id="logo">
-          <h1><strong class="fast-billy">FAST&nbsp;BILLY</strong> vs <strong class="method-girl">METHOD GIRL</strong></h1>
-          <p>Follow the journey of<br/><strong class="fast-billy">Fast Billy, the new ready-to-assemble speedbuilding star</strong>,<br/>up to the grand finale against<br/><strong class="method-girl">Method Girl, pro builder and multi-time champion!</strong></p>
-          <p>A fun short mockumentary paying tribute to speedrunning, speedcubing, speed brick building…</p>
+      <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pb-lg-5 skew text-center text-lg-end pb-0" id="logo">
+        <p>Subscribe to the newsletter<wbr /> <strong>to get exclusive news</strong> about the making of<wbr /> Fast&nbsp;Billy vs Method&nbsp;Girl.</p>
+        {# <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p> #}
       </div>
-      <div class="col col-12 col-md-6 mt-10 skew">
+      <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pt-lg-5 pt-0 skew">
+        {{ newsletterForm }}
+      </div>
+      {# <div class="col col-12 col-md-6 mt-5 skew">
         <h3>Support the project!</h3>
         <p>Sign up for the newsletter to enjoy exclusives about the making of Fast Billy vs Method Girl and the growing community of the RTA speedbuilding!</p>
-        {{ newsletterForm }}
-        <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p>
-      </div>
+      </div> #}
+      {# <div class="col col-12 col-md-6 skew mt-10 text-center" id="logo">
+          <h1><strong class="fast-billy">FAST&nbsp;BILLY</strong> vs <strong class="method-girl">METHOD&nbsp;GIRL</strong></h1>
+      </div> #}
     </div>
   </div>
 </section>
@@ -94,14 +97,17 @@
     <div class="row flex-start">
       <div class="col col-12 col-md-6 skew text-center">
         <blockquote class="spectrum">"Let’s Get<br/>Ready-To-Assemble!"</blockquote>
-        <p><i><strong class="fast-billy">Arturo</strong>, Fast Billy’s BFF</i></p>
+        <p><i><strong>Arturo</strong>, Fast Billy’s BFF</i></p>
       </div>
 
       <div class="col col-12 col-md-6 skew mt-10">
-        <h3>The Story</h3>
-        <p>Follow  <strong class="fast-billy">Fast Billy</strong>, a newcomer in the professional world of the ready-to-assemble speedbuilding, practicing and progressing through the different stages of the 2024 edition of the Ready-To-Assemble Speedbuilding World Cup.</p>
-        <p>Discover how <strong class="method-girl">Method Girl</strong> worked hard to be the first woman to win 3 titles and mark the speedbuilding history.</p>
-        <p>Find out how the two competitors advanced to the RTASWC final and relive the legendary outcome!</p>
+        <h1><span class="fast-billy">Fast&nbsp;Billy</span> vs <span class="method-girl">Method&nbsp;Girl</span></h1>
+        <p>A fun short mockumentary paying tribute to speedrunning, speedcubing, LEGO® speed building…</p>
+        <p>Follow the journey of <strong>Fast Billy, the new ready-to-assemble speedbuilding star</strong>, up to the grand finale against <strong>Method Girl, pro builder and multi-time champion!</strong></p>
+       {#  <p>Follow  <strong class="fast-billy">Fast Billy</strong>, a newcomer in the professional world of the ready-to-assemble speedbuilding, practicing and progressing through the different stages of the 2024 edition of the Ready-To-Assemble Speedbuilding World Cup.</p>
+        <p>Discover how <strong class="method-girl">Method Girl</strong> worked hard to be the first woman to win 3 titles and mark the speedbuilding history.</p> #}
+        <p>Only one to brandish the RTASWC Trophy in the end! Which side are you on, #TeamFastBilly or #TeamMethodGirl?</p>
+        {# <p>Find out how the two competitors advanced to the RTASWC final and relive the legendary outcome!</p> #}
         <p><strong class="spectrum">A story about dedication, friendship and awareness!</strong></p>
       </div>
     </div>
@@ -133,57 +139,48 @@
 <section id="team">
   <div class="container">
     <div class="row flex-start">
-      <div class="col col-12 col-md-6 skew">
+      <div class="col col-12 col-md-8 offset-md-2 skew">
         <h3>The team</h3>
         <div>
           <h4><strong class="method-girl">Julien Baron</strong> director/writer</h4>
-          <p>Former projectionist, Maker of music videos and short movies, Julien is also co-director of the first immersive exhibitions Imagine Van Gogh or Imagine Picasso, cumulating more than 2 millions visitors. Handyman and DIY enthusiast on one hand, speedrunning and speed cubing fan on the other hand, You can easily get where the idea of the movie came from.</p>
+          <p>Former projectionist, maker of music videos and short movies, Julien is also co-director of the first immersive exhibitions Imagine Van Gogh and Imagine Picasso, cumulating more than 2 millions visitors. Handyman and DIY enthusiast on one hand, speedrunning and speed cubing fan on the other hand, You can easily get where the idea of the movie came from.</p>
 
         </div>
         <div>
           <h4><strong class="fast-billy">Éric Richer</strong> writer</h4>
-          <p>Former projectionist, Eric Richer grew up with 7 dogs, read a lot, studied cinema, made some experimental Shorts. Staying in Japan, he made a documentary about the Kamo River in Kyoto. He alsow wrote two novels, La Rouille (The Rust, 2018) and Tiger (2021) that were published by L’Ogre Editions. He is currently working hard on the next ones.</p>
+          <p>Former projectionist, Eric Richer grew up with 7 dogs, read a lot, studied cinema, made some experimental Shorts. Staying in Japan, he made a documentary about the Kamo River in Kyoto. After that he wrote two novels, La Rouille (The Rust, 2018) and Tiger (2021) and is currently working hard on the next ones. He also expresses himself in the language of Shakespeare, and his short stories in English can be read on the PUNK NOIR PRESS website.</p>
         </div>
         <div>
           <p>More to come along as the production advances…</p>
         </div>
       </div>
-      <div class="col col-12 col-md-6 skew text-center mt-20 d-none d-md-block">
-        <blockquote class="spectrum">"Nothing better than<br/>working with friends,<br/>even more if<br/>you’re still friends<br/>when the job is done!</blockquote>
-        <p>The Lonely Guy</p>
-      </div>
     </div>
   </div>
 </section>
 
-<section id="support">
+<section class="newsletter-section">
   <div class="container">
     <div class="row flex-start">
-      <div class="col col-12 col-md-6 skew">
-        <h3>Wanna help?</h3>
-        <p>Sign up for the newsletter and stay up to date with the making of Fast Billy vs Method Girl. You’ll get news about preproduction, cast, crew, shooting, festivals…</p>
-        {{ newsletterForm }}
-        <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p>
+      <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pb-lg-5 skew text-center text-lg-end pb-0" id="logo">
+        <h3>Join the community</h3>
+        <p>Sign up for the newsletter and <strong>stay up to date with the making of Fast&nbsp;Billy vs Method&nbsp;Girl</strong>. You’ll get news about preproduction, cast, crew, shooting, festivals…</p>
       </div>
-      <div class="col col-12 col-md-6 skew mt-20">
-        <h3>Help us spread the word!</h3>
-        <p>Please, follow us online and share it to your friend:</p>
-        <ul>
-          <li>Making of the movie on Instagram:<br/>
-            <a href="https://instagram.com/rtaswc_movie" class="spectrum"><i class="bi bi-instagram"></i> @rtaswc_movie</a>
-          </li>
-          <li>Julien’s speedbuilding account with real records:<br/>
-            <a href="https://instagram.com/smartassembler" class="spectrum"><i class="bi bi-instagram"></i> @smartassembler</a>
-          </li>
-        </ul>
+      <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pt-lg-5 pt-0 skew">
+        {{ newsletterForm }}
+        <p>Totally privacy safe, guaranteed zero spam!</p>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-
-{{ include('shared/footer.html.twig') }}
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">@Amazinglytch 2025</div>
+    </div>
+  </div>
+</footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
