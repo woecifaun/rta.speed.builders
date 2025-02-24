@@ -222,12 +222,6 @@ section {
     }
   }
 
-  & .fullscreen-video-container {
-    @media only screen and (max-width: 575px) {
-      aspect-ratio: 16/9;
-    }
-  }
-
   & video {
 
     @media only screen and (max-width: 575px) {
@@ -243,6 +237,12 @@ section {
       transform: translateX(calc((100% - 100vw) / 2));
       z-index: -999;
     }
+  }
+}
+
+.fullscreen-video-container {
+  @media only screen and (max-width: 575px) {
+    aspect-ratio: 16/9;
   }
 }
 
