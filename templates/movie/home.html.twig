@@ -3,9 +3,9 @@
 <html lang="{{ app.request.locale }}">
 <head>
   <title>Fast Billy vs Method Girl - the RTA Speedbuilding Movie</title>
-  <meta charset="utf-8" />
-  <meta name="title" content="Fast Billy vs Method Girl - the RTA Speedbuilding Movie" />
-  <meta name="description" content="Follow the journey of Fast Billy, the new ready-to-assemble speedbuilding star, up to the grand finale against Method Girl, the multi-time pro builder champion!" />
+  <meta charset="utf-8">
+  <meta name="title" content="Fast Billy vs Method Girl - the RTA Speedbuilding Movie">
+  <meta name="description" content="Follow the journey of Fast Billy, the new ready-to-assemble speedbuilding star, up to the grand finale against Method Girl, the multi-time pro builder champion!">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% include 'shared/icon.html.twig' %}
@@ -32,7 +32,7 @@
       {{ form_widget(form.email, {attr: {placeholder: 'Email Address'}}) }}
       {{ form_errors(form.email) }}
     </div>
-    <div class="mt-1 text-end">
+    <div class="mt-1 text-center text-md-end">
       <button type="submit" class="btn btn-info rtaswc-btn-fast">Sign me up!</button>
     </div>
   {{ form_end(form) }}
@@ -56,18 +56,24 @@
   {% endif %}
 
   <div id="logo-space">
-    <div class="col col-12 col-sm-10 col-md-8 col-lg-6 skew text-center">
+    <div class="col col-12 col-sm-8 col-lg-6 col-xl-4 skew text-center">
       {{ include('shared/fast-billy-vs-method-girl-logo.svg.twig') }}
       <h2>The <abbr title="Ready-To-Assemble Furniture">RTA</abbr> Speedbuilding Movie</h2>
     </div>
   </div>
 
-  <div class="fullscreen-video-container">
-    {# <div> #}
+  {# mobile phone -> Safari fix #}
+  <div class="video-container d-block d-sm-none ratio ratio-16x9">
       <video autoplay loop muted playsinline>
         <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
       </video>
-    {# </div> #}
+  </div>
+
+  {# other sizes #}
+  <div class="video-container-sm d-none d-sm-block">
+      <video autoplay loop muted playsinline>
+        <source src="/media/fast-billy-vs-method-girl-banner.mp4" type="video/mp4">
+      </video>
   </div>
 </section>
 
@@ -75,7 +81,7 @@
   <div class="container">
     <div class="row flex-start">
       <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pb-lg-5 skew text-center text-lg-end pb-0" id="logo">
-        <p>Subscribe to the newsletter<wbr /> <strong>to get exclusive news</strong> about the making of<wbr /> Fast&nbsp;Billy vs Method&nbsp;Girl.</p>
+        <p>Subscribe to the newsletter <strong>to get exclusive news</strong> about the making of Fast&nbsp;Billy vs Method&nbsp;Girl.</p>
         {# <p class="mt-5">Totally privacy safe, guaranteed zero spam!</p> #}
       </div>
       <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pt-lg-5 pt-0 skew">
@@ -85,7 +91,7 @@
         <h3>Support the project!</h3>
         <p>Sign up for the newsletter to enjoy exclusives about the making of Fast Billy vs Method Girl and the growing community of the RTA speedbuilding!</p>
       </div> #}
-      {# <div class="col col-12 col-md-6 skew mt-10 text-center" id="logo">
+      {# <div class="col col-12 col-md-6 skew mt-md-10 text-center" id="logo">
           <h1><strong class="fast-billy">FAST&nbsp;BILLY</strong> vs <strong class="method-girl">METHOD&nbsp;GIRL</strong></h1>
       </div> #}
     </div>
@@ -100,7 +106,7 @@
         <p><i><strong>Arturo</strong>, Fast Billy’s BFF</i></p>
       </div>
 
-      <div class="col col-12 col-md-6 skew mt-10">
+      <div class="col col-12 col-md-6 skew mt-md-10">
         <h1><span class="fast-billy">Fast&nbsp;Billy</span> vs <span class="method-girl">Method&nbsp;Girl</span></h1>
         <p>A fun short mockumentary paying tribute to speedrunning, speedcubing, LEGO® speed building…</p>
         <p>Follow the journey of <strong>Fast Billy, the new ready-to-assemble speedbuilding star</strong>, up to the grand finale against <strong>Method Girl, pro builder and multi-time champion!</strong></p>
@@ -122,7 +128,7 @@
         <p>Wait, what?! 😆</p>
       </div>
 
-      <div class="col col-12 col-md-6 skew mt-10">
+      <div class="col col-12 col-md-6 skew mt-md-10">
         <h3>Mockumentary as a genre</h3>
         <p>Like <cite>The Office</cite>, <cite>What We Do In The Shadows</cite>, <cite>This Is Spinal Tap</cite> or <cite>Borat</cite>, <strong class="spectrum">Fast Billy vs. Method Girl will use the codes of real documentaries to tell a fully made up story</strong>.</p>
         <p>What for?</p>
@@ -167,7 +173,7 @@
       </div>
       <div class="col col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 pt-lg-5 pt-0 skew">
         {{ newsletterForm }}
-        <p>Totally privacy safe, guaranteed zero spam!</p>
+        <p class="mt-1 text-center text-md-start">Totally privacy safe, guaranteed zero spam!</p>
       </div>
     </div>
   </div>
