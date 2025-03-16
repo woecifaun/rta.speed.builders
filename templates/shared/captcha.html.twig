@@ -1,0 +1,109 @@
+{% set numbers = number|split('') %}
+
+{% set lineTop = '' %}
+{% set lineMiddle = '' %}
+{% set lineBottom = '' %}
+{% set lineLeft = '' %}
+{% set lineRight = '' %}
+
+{% for i,figure in numbers %}
+
+  {% if figure == 1 %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 2 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,8L' ~ i ~ '2,11 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' %}
+  {% endif %}
+
+  {% if figure == 3 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 4 %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 5 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 '  %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 6 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 ' ~ 'M' ~ i ~ '2,8L' ~ i ~ '2,11 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 7 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 8 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 ' ~ 'M' ~ i ~ '2,8L' ~ i ~ '2,11 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 9 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineMiddle = lineMiddle ~ 'M' ~ i ~ '3,7L' ~ i ~ '6,7 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+  {% if figure == 0 %}
+    {% set lineTop = lineTop ~ 'M' ~ i ~ '3,2L' ~ i ~ '6,2 ' %}
+    {% set lineBottom = lineBottom ~ 'M' ~ i ~ '3,12L' ~ i ~ '6,12 ' %}
+    {% set lineLeft = lineLeft ~ 'M' ~ i ~ '2,3L' ~ i ~ '2,6 ' ~ 'M' ~ i ~ '2,8L' ~ i ~ '2,11 ' %}
+    {% set lineRight = lineRight ~ 'M' ~ i ~ '7,3L' ~ i ~ '7,6 ' ~ 'M' ~ i ~ '7,8L' ~ i ~ '7,11 ' %}
+  {% endif %}
+
+{% endfor %}
+
+<div id="captcha-container">{# Homemade Captcha  #}
+  <div class="container mt-5">
+    <div class="row">
+      <div id="captcha-close-button">×</div>
+      <div class="col text-center col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 p-3">
+        <h3>Yes, I am a real human! </h3>
+        <p>Please prove it by filling the field below:</p>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 40 14" id="excelsior">
+          <path d="{{ lineTop}}" stroke-linecap="round"/>
+          <path d="{{ lineMiddle}}" stroke-linecap="round"/>
+          <path d="{{ lineBottom }}" stroke-linecap="round"/>
+          <path d="{{ lineLeft }}" stroke-linecap="round"/>
+          <path d="{{ lineRight }}" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <input type="number" id="arena" class="text-center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const someSpecificValue = '{{ app.session.get('captcha-key') }}';
+</script>
+
+
+

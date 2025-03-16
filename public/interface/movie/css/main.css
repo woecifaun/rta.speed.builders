@@ -22,7 +22,7 @@
 
 
 .skew {
-  @media screen and (min-width: 576px) {
+  @media only screen and (min-width: 576px) {
     transform: skew(-5deg);
   }
 }
@@ -57,6 +57,10 @@
   &:hover {
     color: var(--method-girl-color-main);
   }
+}
+
+body, html {
+  position: relative;
 }
 
 /* Section generic settings */
@@ -267,4 +271,34 @@ footer {
   padding-bottom: 1em;
   border-top: solid 1px black;
   color: #aaaaaa;
+}
+
+/* Captcha */
+#captcha-container {
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,.5);
+  backdrop-filter: blur(10px);
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#captcha-container .container {
+  background-color: white;
+  border-radius: var(--bs-border-radius);
+}
+
+svg#excelsior {
+  width: 20%;
+  min-width: 100px;
+}
+
+svg#excelsior path {
+  fill:none;
+  stroke:rgba(0,0,0,.5  );
+  stroke-width:2;
+  stroke-linecap: round;
 }
